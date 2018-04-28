@@ -15,7 +15,15 @@ class CreateEspecialistaTable extends Migration
     {
         Schema::create('especialista', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('perfil');
+            $table->string('cargo_espec');
+            $table->integer('crm_mat');
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
+        });
+
+        Schema::table('especialista', function(Blueprint $table){
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

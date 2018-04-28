@@ -21,7 +21,19 @@ class CreateAtendimentoTable extends Migration
             $table->dateTime('data_solucao');
             $table->dateTime('data_fechamento');
             $table->string('acao', 500);
+            $table->integer('paciente_id')->unsigned();
+            $table->integer('setor_id')->unsigned();
+            $table->integer('especialista_id')->unsigned();
+            $table->string('tipo_chamado');
+            $table->integer('servico_id')->unsigned();
             $table->timestamps();
+        });
+
+        Schema::table('paciente', function(Blueprint $table){
+            $table->foreign('paciente_id')->references('id')->on('paciente')->onDelete('cascade');
+            $table->foreign('setor_id')->references('id')->on('setor')->onDelete('cascade');
+            $table->foreign('especialista_id')->references('id')->on('especialista')->onDelete('cascade');
+            $table->foreign('servico_id')->references('id')->on('servico')->onDelete('cascade');
         });
     }
 

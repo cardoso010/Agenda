@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAtendenteTable extends Migration
+class CreatePacienteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,22 @@ class CreateAtendenteTable extends Migration
      */
     public function up()
     {
-        Schema::create('atendente', function (Blueprint $table) {
+        Schema::create('paciente', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('perfil');
-            $table->string('cargo');
-            $table->integer('matricula');
-            $table->integer('setor');
-            $table->string('local');
+            $table->string('prontuario');
+            $table->date('data_nascimento');
+            $table->string('endereco');
+            $table->string('bairro');
+            $table->string('cidade');
+            $table->string('uf');
+            $table->integer('identidade');
+            $table->integer('cpf');
+            $table->integer('telefone');
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
 
-        Schema::table('atendente', function(Blueprint $table){
+        Schema::table('paciente', function(Blueprint $table){
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
@@ -36,6 +40,6 @@ class CreateAtendenteTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('atendente');
+        Schema::dropIfExists('paciente');
     }
 }
