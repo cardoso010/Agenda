@@ -26,4 +26,39 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    /**
+    * @param string|array $roles
+    */
+    public function authorizeRoles($roles)
+    {
+        if (is_array($roles)) {
+            return $this->hasAnyRole($roles) || 
+                abort(401, 'Esta ação não é autorizada.');
+        }
+        return $this->hasRole($roles) || 
+                abort(401, 'Esta ação não é autorizada.');
+    }
+
+    /**
+    * Verifique vários roles
+    * @param array $roles
+    */
+    public function hasAnyRole($roles)
+    {
+        return null !== $this->roles()->whereIn('name', $roles)->first();
+    }
+    /**
+    * Verifique um papel
+    * @param string $role
+    */
+    public function hasRole($role)
+    {
+        return null !== $this->roles()->where('name', $role)->first();
+    }
 }
