@@ -35,9 +35,12 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+                    @if (!Auth::guest())
+                        <ul class="nav navbar-nav">
+                            <li><a href="{{ route('categoria.index') }}">Categorias</a></li>
+                            <li><a href="{{ route('servico.index') }}">Serviço</a></li>
+                        </ul>
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">

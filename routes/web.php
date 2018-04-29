@@ -18,3 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('categoria', 'CategoriaController')->middleware('auth');
+Route::put('/categoria/search', ['uses'=>'CategoriaController@search', 'as'=>'categoria.search']);
+
+Route::resource('servico', 'ServicoController')->middleware('auth');
+Route::put('/servico/search', ['uses'=>'ServicoController@search', 'as'=>'servico.search']);
+
