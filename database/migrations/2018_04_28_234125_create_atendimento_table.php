@@ -29,7 +29,7 @@ class CreateAtendimentoTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('paciente', function(Blueprint $table){
+        Schema::table('atendimento', function(Blueprint $table){
             $table->foreign('paciente_id')->references('id')->on('paciente')->onDelete('cascade');
             $table->foreign('setor_id')->references('id')->on('setor')->onDelete('cascade');
             $table->foreign('especialista_id')->references('id')->on('especialista')->onDelete('cascade');
