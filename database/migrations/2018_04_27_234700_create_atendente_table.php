@@ -20,7 +20,7 @@ class CreateAtendenteTable extends Migration
             $table->integer('matricula');
             $table->integer('setor');
             $table->string('local');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();;
             $table->timestamps();
         });
 

@@ -21,11 +21,11 @@ class CreateAtendimentoTable extends Migration
             $table->dateTime('data_solucao');
             $table->dateTime('data_fechamento');
             $table->string('acao', 500);
-            $table->integer('paciente_id')->unsigned();
-            $table->integer('setor_id')->unsigned();
-            $table->integer('especialista_id')->unsigned();
+            $table->integer('paciente_id')->unsigned()->nullable();
+            $table->integer('setor_id')->unsigned()->nullable();
+            $table->integer('especialista_id')->unsigned()->nullable();
             $table->string('tipo_chamado');
-            $table->integer('servico_id')->unsigned();
+            $table->integer('servico_id')->unsigned()->nullable();
             $table->timestamps();
         });
 

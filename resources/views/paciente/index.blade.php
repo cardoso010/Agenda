@@ -8,6 +8,9 @@
                     <h4 class="title">Striped Table with Hover</h4>
                     <p class="category">Here is a subtitle for this table</p>
                 </div>
+                <div class="form-group" style="float: right;">
+                    <p><a href="{{route('paciente.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Adicionar</a></p>
+                </div>
                 <div class="content table-responsive table-full-width">
                     <table class="table table-hover table-striped">
                         <thead>
@@ -15,14 +18,23 @@
                             <th>Nome</th>
                             <th>CPF</th>
                             <th>Telefone</th>
+                            <th>Ação</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Dakota Rice</td>
-                                <td>$36,738</td>
-                                <td>Niger</td>
-                            </tr>
+                            @foreach($pacientes as $paciente)
+                                <tr>
+                                    <th scope="row" class="text-center">{{ $paciente->id }}</th>
+                                    <td>{{ $paciente->nome }}</td>
+                                    <td>{{ $paciente->cpf }}</td>
+                                    <td>{{ $paciente->telefone }}</td>
+                                    <td width="155" class="text-center">
+                                        <a href="{{route('paciente.edit', $paciente->id)}}" class="btn btn-default">Editar</a>
+                                        {!! Form::open(['method' => 'DELETE', 'route' => ['paciente.destroy', $paciente->id]]) !!}
+                                            {!! Form::submit('Excluir', ['class' => 'btn btn-danger']) !!}
+                                        {!! Form::close() !!}
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

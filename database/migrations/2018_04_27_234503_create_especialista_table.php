@@ -18,7 +18,7 @@ class CreateEspecialistaTable extends Migration
             $table->string('perfil');
             $table->string('cargo_espec');
             $table->integer('crm_mat');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();;
             $table->timestamps();
         });
 

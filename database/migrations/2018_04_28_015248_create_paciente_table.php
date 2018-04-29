@@ -22,10 +22,10 @@ class CreatePacienteTable extends Migration
             $table->string('bairro');
             $table->string('cidade');
             $table->string('uf');
-            $table->integer('identidade');  
-            $table->integer('cpf');
-            $table->integer('telefone');
-            $table->integer('user_id')->unsigned();
+            $table->string('identidade');  
+            $table->string('cpf');
+            $table->string('telefone');
+            $table->integer('user_id')->unsigned()->nullable();
             $table->timestamps();
         });
 

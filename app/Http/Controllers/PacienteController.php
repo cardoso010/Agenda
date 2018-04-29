@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Paciente;
+use App\User;
+use App\Role;
 use Illuminate\Http\Request;
 
 class PacienteController extends Controller
@@ -16,8 +18,8 @@ class PacienteController extends Controller
     public function index(Request $request)
     {
         //
-        $lista = Paciente::all();
-        return view('paciente.list');
+        $pacientes = Paciente::paginate(10);
+	   	return view('paciente.index', compact('pacientes'));
     }
 
     /**
@@ -27,7 +29,7 @@ class PacienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('paciente.add');
     }
 
     /**
@@ -35,9 +37,42 @@ class PacienteController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        if (!empty($request->file('image')) && $request->file('image')->isValid()) {
+            $fileName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move($this->path, $fileName);
+        } else {
+            $fileName = '';
+        }
+
+        $role_paciente  = Role::where('name', 'paciente')->first();
+
+        $nome_paciente = $request->input('nome');
+
+        $usuario = User::create([
+            'name' => $nome_paciente,
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+            'foto' => $fileName
+        ]);
+        $usuario->roles()->attach($role_paciente);
+        
+        $paciente = Paciente::create([
+            'nome' => $nome_paciente,
+            'prontuario' => $request->input('prontuario'),
+            'data_nascimento' => $request->input('data_nascimento'),
+            'endereco' => $request->input('endereco'),
+            'bairro' => $request->input('bairro'),
+            'cidade' => $request->input('cidade'),
+            'uf' => $request->input('uf'),
+            'identidade' => $request->input('identidade'),
+            'cpf' => $request->input('cpf'),
+            'telefone' => $request->input('telefone'),
+            'user_id' => $usuario->id
+        ]);
+
+    	return redirect()->route('paciente.index');	
     }
 
     /**
@@ -59,7 +94,13 @@ class PacienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $paciente = Paciente::find($id);
+
+        if(!$paciente){
+            return redirect()->route('paciente.index');
+        }
+
+        return view('paciente.edit', compact('paciente'));
     }
 
     /**
@@ -70,7 +111,23 @@ class PacienteController extends Controller
      */
     public function update($id)
     {
-        //
+        $update =[
+            'nome' => $request->input('nome'),
+            'prontuario' => $request->input('prontuario'),
+            'data_nascimento' => $request->input('data_nascimento'),
+            'endereco' => $request->input('endereco'),
+            'bairro' => $request->input('bairro'),
+            'cidade' => $request->input('cidade'),
+            'uf' => $request->input('uf'),
+            'identidade' => $request->input('identidade'),
+            'cpf' => $request->input('cpf'),
+            'telefone' => $request->input('telefone'),
+            'cpf' => $request->input('cpf')
+        ];
+        
+        $result = Paciente::find($id)->update($update);
+        
+        return redirect()->route('paciente.index');
     }
 
     /**
@@ -81,6 +138,13 @@ class PacienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $paciente =  Paciente::find($id);
+
+        if($paciente){
+            //$category->products()->detach();
+            $result = $paciente->delete();
+        }
+
+        return redirect()->route('paciente.index');
     }
 }

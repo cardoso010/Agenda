@@ -14,10 +14,12 @@
                 </a>
             </li>
             <li>
-                <a href="/pacientes">
+                @if (!Auth::guest())
+                <a href="{{ route('paciente.index') }}">
                     <i class="pe-7s-user"></i>
                     <p>Pacientes</p>
                 </a>
+                @endif
             </li>
             <li>
                 @if (!Auth::guest())
