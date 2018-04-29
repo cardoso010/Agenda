@@ -11,6 +11,21 @@
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
+
+                        <div class="form-group{{ $errors->has('foto') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">Foto</label>
+
+                            <div class="col-md-6">
+                                <input id="foto" type="text" class="form-control" name="foto" value="{{ old('name') }}" required autofocus>
+
+                                @if ($errors->has('foto'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('foto') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
 
