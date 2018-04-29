@@ -1,0 +1,12 @@
+.flex-center{
+    padding: 10px;
+}
+.flex-center a{
+    font-size: 1.2em;
+    font-weight: bolder;
+    padding: 10px;
+}
+
+.container-fluid .row{
+    text-align: center;
+}
