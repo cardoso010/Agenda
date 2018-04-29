@@ -31,7 +31,7 @@
                 @if (!Auth::guest())
                 <a href="{{ route('servico.index') }}">
                     <i class="pe-7s-news-paper"></i>
-                    <p>Serviço</p>
+                    <p>Serviços</p>
                 </a>
                 @endif
             </li>

@@ -47,12 +47,12 @@ class ServicoController extends Controller
      */
     public function store(Request $request)
     {
-
-        $categoria = Categoria::create([
-            'nome' => $request->input('nome')
+        $servico = Servico::create([
+            'nome' => $request->input('nome'),
+            'categoria_id' => $request->input('categoria')
         ]);
 
-        $categoria->categoria()->sync($request->input('categoria'));
+        //$servico->categoria()->sync($request->input('categoria'));
         
         return redirect()->route('servico.index');
     }
@@ -74,18 +74,13 @@ class ServicoController extends Controller
      * @param  \App\Servico  $servico
      * @return \Illuminate\Http\Response
      */
-    public function edit(Servico $servico)
+    public function edit($id)
     {
-        $servico = Servico::find($servico->id);
+        $servico = Servico::find($id);
 
         if(!empty($servico)){
-            $categorias = Categoria::get();
-            $selected_cat = array();
-
-            foreach ($servico->categorias as $categoria) {
-                $selected_cat[] = $categoria->pivot->categoria_id;
-            }
-            return view('servico.edit', compact('servico', 'categorias', 'selected_cat'));
+            $categorias = Categoria::pluck('nome', 'id');
+            return view('servico.edit', compact('servico', 'categorias'));
         }
 
         return redirect()->route('servico.index');
@@ -98,20 +93,19 @@ class ServicoController extends Controller
      * @param  \App\Servico  $servico
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Servico $servico)
+    public function update(Request $request, $id)
     {
         $categoria = $request->input('categoria');
 
-        $servico = Servico::find($servico->id);
+        $servico = Servico::find($id);
 
         if(!empty($servico)){
 
-            if(!empty($categoria)){
-                $servico->categories()->sync($categoria);
-            }
             $servico->update([
-                'nome' =>  $servico->nome,
+                'nome' =>  $request->input('nome'),
+                'categoria_id' => $request->input('categoria')
             ]);
+            
         }
         return redirect()->route('servico.index');
     }
@@ -126,10 +120,7 @@ class ServicoController extends Controller
     {
         $servico = Servico::find($servico->id);
 
-        if($servico){
-            $servico->categories()->detach();
-            $result = $servico->delete();
-        }
+        $result = $servico->delete();
 
         return redirect()->route('servico.index');
     }

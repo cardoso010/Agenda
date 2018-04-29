@@ -12,6 +12,7 @@
                 <div class="panel-body">
 	                <form action="{{ route('categoria.update', $categoria->id) }}" method="POST" enctype="multipart/form-data">
 	                	{{ csrf_field() }}
+						<input type="hidden" name="_method" value="put">
 						<div class="form-group">
 						  	<label for="nome">Nome</label>
 						    <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome" value="{{ $categoria->nome }}">

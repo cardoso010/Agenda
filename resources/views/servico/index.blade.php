@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -18,7 +19,7 @@
                             <input type="text" class="form-control" id="nome" name="nome" placeholder="Serviço">
                         </div>
                         <div class="form-group" style="width: 200px; max-width: 200px;">
-                            <select name="categoria[]" class="form-control selectpicker" multiple="" data-live-search="true" title="Categorias">
+                            <select name="categoria" class="form-control selectpicker" data-live-search="true" title="Categorias">
                                 <?php 
                                 if(!empty($categorias)){
                                     foreach($categorias as $categoria){ ?>
@@ -44,8 +45,10 @@
                                     <th scope="row" class="text-center">{{ $servico->id }}</th>
                                     <td>{{ $servico->nome }}</td>
                                     <td width="155" class="text-center">
-                                        <a href="{{route('servico.edit', $servico->id)}}" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-pencil"></i></a>
-                                        <a href="{{route('servico.destroy', $servico->id)}}" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></a>
+                                    <a href="{{route('servico.edit', $servico->id)}}" class="btn btn-default">Editar</a>
+                                        {!! Form::open(['method' => 'DELETE', 'route' => ['servico.destroy', $servico->id]]) !!}
+                                            {!! Form::submit('Excluir', ['class' => 'btn btn-danger']) !!}
+                                        {!! Form::close() !!}
                                     </td>
                                 </tr>
                             @endforeach

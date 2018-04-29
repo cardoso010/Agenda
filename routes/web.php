@@ -25,5 +25,4 @@ Route::put('/categoria/search', ['uses'=>'CategoriaController@search', 'as'=>'ca
 Route::resource('servico', 'ServicoController')->middleware('auth');
 Route::put('/servico/search', ['uses'=>'ServicoController@search', 'as'=>'servico.search']);
 
-
 Route::get('/pacientes', 'PacienteController@index');

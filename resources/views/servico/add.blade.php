@@ -17,21 +17,12 @@
 						    <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome">
 						</div>
                         <div class="form-group">
-                            <label for="name">Categorias</label>
-                            <select name="categoria[]" class="form-control selectpicker" multiple="" data-live-search="true" title="Categorias">
+                            <label for="name">Categoria</label>
+                            <select name="categoria" class="form-control selectpicker" data-live-search="true" title="Categoria">
                                 @foreach($categorias as $categoria)
                                 <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
                                 @endforeach()
                             </select>
-                            <p class="help-block">Use Crtl para selecionar.</p>
-                        </div>
-                        <div class="control-group input-images">
-                            <button type="button" class="btn btn-info" id="moreimages">Mais...</button>
-                            <br />
-                            <br />
-                            <div class="controls">
-                                <input name="images[]" type="file">
-                            </div>
                         </div>
 						<br />
 						<button type="submit" class="btn btn-primary">Salvar</button>

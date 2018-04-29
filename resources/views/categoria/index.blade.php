@@ -36,7 +36,9 @@
                                     <td>{{ $categoria->nome }}</td>
                                     <td width="155" class="text-center">
                                         <a href="{{route('categoria.edit', $categoria->id)}}" class="btn btn-default">Editar</a>
-                                        <a href="{{route('categoria.destroy', $categoria->id)}}" class="btn btn-danger">Excluir</a>
+                                        {!! Form::open(['method' => 'DELETE', 'route' => ['categoria.destroy', $categoria->id]]) !!}
+                                            {!! Form::submit('Excluir', ['class' => 'btn btn-danger']) !!}
+                                        {!! Form::close() !!}
                                     </td>
                                 </tr>
                             @endforeach
