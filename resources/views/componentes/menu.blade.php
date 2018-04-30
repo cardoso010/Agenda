@@ -46,10 +46,12 @@
                 @endif
             </li>
             <li>
-                <a href="maps.html">
+                @if (!Auth::guest())
+                <a href="{{ route('especialista.index') }}">
                     <i class="pe-7s-map-marker"></i>
-                    <p>Maps</p>
+                    <p>Especialista</p>
                 </a>
+                @endif
             </li>
             <li>
                 <a href="notifications.html">
