@@ -150,9 +150,11 @@ class PacienteController extends Controller
     }
 
     public function atendimentos($id){
+        $paciente =  Paciente::find($id);
+
         $atendimentos = Atendimento::where('paciente_id', $id)->get();
 
-        return view('paciente.atendimentos', compact('atendimentos'));
+        return view('paciente.atendimentos', compact('paciente', 'atendimentos'));
 
     }
 
