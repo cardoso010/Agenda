@@ -20,7 +20,7 @@ $php artisan key:generate
 
 ### Executar as migrations para criação do banco
 ```
-$php artisan migrate:fresh --seed
+$php artisan migrate:fresh --seed 
 ```
 
 ### Executando projeto
