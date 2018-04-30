@@ -38,10 +38,12 @@
                 @endif
             </li>
             <li>
-                <a href="icons.html">
+                @if (!Auth::guest())
+                <a href="{{ route('doenca.index') }}">
                     <i class="pe-7s-science"></i>
-                    <p>Icons</p>
+                    <p>Doenças</p>
                 </a>
+                @endif
             </li>
             <li>
                 <a href="maps.html">

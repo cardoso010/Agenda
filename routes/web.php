@@ -27,3 +27,7 @@ Route::put('/servico/search', ['uses'=>'ServicoController@search', 'as'=>'servic
 
 Route::resource('paciente', 'PacienteController')->middleware('auth');
 Route::get('/paciente/{id}/atendimentos', ['uses'=>'PacienteController@atendimentos', 'as'=>'paciente.atendimentos'])->middleware('auth');
+
+
+Route::resource('doenca', 'DoencaController')->middleware('auth');
+Route::put('/doenca/search', ['uses'=>'DoencaController@search', 'as'=>'doenca.search']);

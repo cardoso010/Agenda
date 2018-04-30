@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Paciente;
+use App\Models\Atendimento;
 use App\User;
 use App\Role;
 use Illuminate\Http\Request;
@@ -149,7 +150,10 @@ class PacienteController extends Controller
     }
 
     public function atendimentos($id){
-        
+        $atendimentos = Atendimento::where('paciente_id', $id)->get();
+
+        return view('paciente.atendimentos', compact('atendimentos'));
+
     }
 
 }
