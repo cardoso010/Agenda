@@ -109,7 +109,7 @@ class PacienteController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
         $update =[
             'nome' => $request->input('nome'),
@@ -147,4 +147,9 @@ class PacienteController extends Controller
 
         return redirect()->route('paciente.index');
     }
+
+    public function atendimentos($id){
+        
+    }
+
 }

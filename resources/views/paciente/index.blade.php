@@ -22,6 +22,7 @@
                         </thead>
                         <tbody>
                             @foreach($pacientes as $paciente)
+                            <a href="{{route('paciente.atendimentos', $paciente->id)}}">
                                 <tr>
                                     <th scope="row" class="text-center">{{ $paciente->id }}</th>
                                     <td>{{ $paciente->nome }}</td>
@@ -34,6 +35,7 @@
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>
+                            </a>
                             @endforeach
                         </tbody>
                     </table>
