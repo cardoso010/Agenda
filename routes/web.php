@@ -35,3 +35,6 @@ Route::put('/doenca/search', ['uses'=>'DoencaController@search', 'as'=>'doenca.s
 Route::resource('atendimento', 'AtendimentoController')->middleware('auth');
 Route::get('/atendimento/paciente/{id}', ['uses'=>'AtendimentoController@atendimentos_paciente', 'as'=>'atendimento.atendimentos_paciente'])->middleware('auth');
 Route::get('/atendimento/especialista/{id}', ['uses'=>'AtendimentoController@atendimentos_especialista', 'as'=>'atendimento.atendimentos_especialista'])->middleware('auth');
+
+Route::resource('setor', 'SetorController')->middleware('auth');
+Route::put('/setor/search', ['uses'=>'SetorController@search', 'as'=>'setor.search']);

@@ -17,7 +17,7 @@ class CreateAtendimentoTable extends Migration
             $table->increments('id');
             $table->string('resumo',400);
             $table->string('descricao', 255);
-            $table->boolean('status');
+            $table->boolean('status')->default(0);;
             $table->dateTime('data_solucao');
             $table->dateTime('data_fechamento');
             $table->string('acao', 500);

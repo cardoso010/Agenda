@@ -49,7 +49,23 @@
                 @if (!Auth::guest())
                 <a href="{{ route('especialista.index') }}">
                     <i class="pe-7s-map-marker"></i>
-                    <p>Especialista</p>
+                    <p>Especialistas</p>
+                </a>
+                @endif
+            </li>
+            <li>
+                @if (!Auth::guest())
+                <a href="{{ route('setor.index') }}">
+                    <i class="pe-7s-bell"></i>
+                    <p>Setores</p>
+                </a>
+                @endif
+            </li>
+            <li>
+                @if (!Auth::guest())
+                <a href="{{ route('atendimento.index') }}">
+                    <i class="pe-7s-bell"></i>
+                    <p>Atendimentos</p>
                 </a>
                 @endif
             </li>
