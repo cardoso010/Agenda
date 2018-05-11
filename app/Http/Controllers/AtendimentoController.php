@@ -82,7 +82,7 @@ class AtendimentoController extends Controller
             return view('atendimento.edit', compact('atendimento', 'servicos', 'pacientes', 'setores', 'especialistas'));
         }
 
-        return redirect()->route('atendimento.index');
+        return redirect()->route('atendimento.edit');
     }
 
     /**
@@ -128,7 +128,7 @@ class AtendimentoController extends Controller
     public function atendimentos_especialista($id){
         $especialista =  Especialista::find($id);
 
-        $atendimentos = Atendimento::where('paciente_id', $id)->get();
+        $atendimentos = Atendimento::where('especialista_id', $id)->get();
 
         return view('atendimento.atendimentos_especialista', compact('especialista', 'atendimentos'));
 

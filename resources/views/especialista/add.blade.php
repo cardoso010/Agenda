@@ -34,7 +34,7 @@
 						</div>
 						<div class="form-group">
 						  	<label for="crm_mat">Crm</label>
-						    <input type="text" class="form-control" name="crm_mat" id="crm_mat" placeholder="Crm">
+						    <input type="number" class="form-control" name="crm_mat" id="crm_mat" max="99999999999" placeholder="Crm">
 						</div>
 						<div class="control-group">
                             <div class="controls">

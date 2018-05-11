@@ -32,6 +32,12 @@
                                     <td>{{ $atendimento->data_solucao }}</td>
                                     <td>{{ $atendimento->data_fechamento }}</td>
                                     <td>{{ $atendimento->acao }}</td>
+                                    <td width="155" class="text-center">
+                                        <a href="{{route('atendimento.edit', $atendimento->id)}}" class="btn btn-default">Editar</a>
+                                        {!! Form::open(['method' => 'DELETE', 'route' => ['atendimento.destroy', $atendimento->id]]) !!}
+                                            {!! Form::submit('Excluir', ['class' => 'btn btn-danger']) !!}
+                                        {!! Form::close() !!}
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

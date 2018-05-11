@@ -63,7 +63,7 @@
                             <label for="especialista_id">Especialista</label>
                             <select name="especialista_id" class="form-control selectpicker" data-live-search="true" title="Especialista">
                                 @foreach($especialistas as $especialista)
-                                <option value="{{ $especialista->id }}">{{ $especialista->user->nome }}</option>
+                                <option value="{{ $especialista->id }}">{{ $especialista->crm_mat }}</option>
                                 @endforeach()
                             </select>
                         </div>
