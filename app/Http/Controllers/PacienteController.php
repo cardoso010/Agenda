@@ -10,6 +10,19 @@ use Illuminate\Http\Request;
 
 class PacienteController extends Controller
 {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function home(Request $request)
+    {
+        $request->user()->authorizeRoles(['paciente']);
+
+	   	return view('paciente.home');
+    }
+
     //
     /**
      * Display a listing of the resource.
@@ -18,7 +31,8 @@ class PacienteController extends Controller
      */
     public function index(Request $request)
     {
-        //
+        $request->user()->authorizeRoles(['atendente']);
+
         $pacientes = Paciente::paginate(10);
 	   	return view('paciente.index', compact('pacientes'));
     }
@@ -30,6 +44,8 @@ class PacienteController extends Controller
      */
     public function create()
     {
+        $request->user()->authorizeRoles(['atendente']);
+
         return view('paciente.add');
     }
 
@@ -40,6 +56,8 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
+        $request->user()->authorizeRoles(['atendente']);
+
         if (!empty($request->file('image')) && $request->file('image')->isValid()) {
             $fileName = time() . '.' . $request->file('image')->getClientOriginalExtension();
             $request->file('image')->move($this->path, $fileName);
@@ -95,6 +113,8 @@ class PacienteController extends Controller
      */
     public function edit($id)
     {
+        $request->user()->authorizeRoles(['atendente']);
+
         $paciente = Paciente::find($id);
 
         if(!$paciente){
@@ -112,6 +132,8 @@ class PacienteController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->user()->authorizeRoles(['atendente']);
+
         $update =[
             'nome' => $request->input('nome'),
             'prontuario' => $request->input('prontuario'),
@@ -139,6 +161,8 @@ class PacienteController extends Controller
      */
     public function destroy($id)
     {
+        $request->user()->authorizeRoles(['atendente']);
+
         $paciente =  Paciente::find($id);
 
         if($paciente){
@@ -149,7 +173,10 @@ class PacienteController extends Controller
         return redirect()->route('paciente.index');
     }
 
-    public function atendimentos($id){
+    public function atendimentos($id)
+    {
+        $request->user()->authorizeRoles(['atendente', 'paciente']);
+
         $paciente =  Paciente::find($id);
 
         $atendimentos = Atendimento::where('paciente_id', $id)->get();

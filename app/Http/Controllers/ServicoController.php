@@ -19,8 +19,10 @@ class ServicoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['atendente', 'especialista']);
+
         $servicos = Servico::get();
         $categorias = Categoria::get();
         $selected_cat = [];

@@ -26,8 +26,10 @@ Route::resource('servico', 'ServicoController')->middleware('auth');
 Route::put('/servico/search', ['uses'=>'ServicoController@search', 'as'=>'servico.search']);
 
 Route::resource('paciente', 'PacienteController')->middleware('auth');
+Route::get('/paciente/home', ['uses'=>'PacienteController@home', 'as'=>'paciente.home'])->middleware('auth');
 
 Route::resource('especialista', 'EspecialistaController')->middleware('auth');
+Route::get('/especialista/home', ['uses'=>'EspecialistaController@home', 'as'=>'especialista.home'])->middleware('auth');
 
 Route::resource('doenca', 'DoencaController')->middleware('auth');
 Route::put('/doenca/search', ['uses'=>'DoencaController@search', 'as'=>'doenca.search']);

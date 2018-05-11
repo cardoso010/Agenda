@@ -24,14 +24,18 @@ class AtendimentoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['atendente', 'especialista']);
+
         $atendimentos = Atendimento::paginate(10);
 	   	return view('atendimento.index', compact('atendimentos'));
     }
 
     public function create()
     {
+        $request->user()->authorizeRoles(['atendente', 'especialista']);
+
         $servicos = Servico::get();
         $pacientes = Paciente::get();
         $setores = Setor::get();

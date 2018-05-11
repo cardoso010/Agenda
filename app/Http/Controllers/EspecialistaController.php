@@ -11,6 +11,20 @@ use Illuminate\Http\Request;
 class EspecialistaController extends Controller
 {
     //
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function home(Request $request)
+    {
+        $request->user()->authorizeRoles(['especialista']);
+
+	   	return view('especialista.home');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +32,8 @@ class EspecialistaController extends Controller
      */
     public function index(Request $request)
     {
-        //
+        $request->user()->authorizeRoles(['atendente']);
+
         $especialistas = Especialista::paginate(10);
 	   	return view('especialista.index', compact('especialistas'));
     }
@@ -55,7 +70,8 @@ class EspecialistaController extends Controller
             'name' => $nome_especialista,
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
-            'foto' => $fileName
+            'foto' => $fileName,
+            'role' => $role_especialista->id
         ]);
         $usuario->roles()->attach($role_especialista);
         

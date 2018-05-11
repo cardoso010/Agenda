@@ -23,6 +23,7 @@ class UserTableSeeder extends Seeder
         $atendente->email = 'atendente@hospital.com';
         $atendente->password = bcrypt('atendente');
         $atendente->foto = '32131321321321';
+        $atendente->role = $role_atendente->id;
         $atendente->save();
         $atendente->roles()->attach($role_atendente);
 
@@ -31,6 +32,7 @@ class UserTableSeeder extends Seeder
         $paciente->email = 'paciente@hospital.com';
         $paciente->password = bcrypt('paciente');
         $paciente->foto = '32131321321321';
+        $paciente->role = $role_paciente->id;
         $paciente->save();
         $paciente->roles()->attach($role_paciente);
 
@@ -39,6 +41,7 @@ class UserTableSeeder extends Seeder
         $especialista->email = 'especialista@hospital.com';
         $especialista->password = bcrypt('especialista');
         $especialista->foto = '32131321321321';
+        $especialista->role = $role_especialista->id;
         $especialista->save();
         $especialista->roles()->attach($role_especialista);
 
