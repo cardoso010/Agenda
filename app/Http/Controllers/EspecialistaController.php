@@ -17,23 +17,8 @@ class EspecialistaController extends Controller
      *
      * @return Response
      */
-    public function home(Request $request)
-    {
-        $request->user()->authorizeRoles(['especialista']);
-
-	   	return view('especialista.home');
-    }
-
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['atendente']);
-
         $especialistas = Especialista::paginate(10);
 	   	return view('especialista.index', compact('especialistas'));
     }

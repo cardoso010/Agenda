@@ -20,8 +20,6 @@ class CategoriaController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['atendente']);
-
         $categorias = Categoria::paginate(10);
 	   	return view('categoria.index', compact('categorias'));
     }

@@ -20,8 +20,6 @@ class SetorController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['atendente']);
-
         $setores = Setor::paginate(10);
 	   	return view('setor.index', compact('setores'));
     }

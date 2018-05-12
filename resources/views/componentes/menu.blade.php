@@ -13,62 +13,78 @@
                     <p>Dashboard</p>
                 </a>
             </li>
+            @if (Auth::user()->hasRole('atendente'))
             <li>
-                @if (!Auth::guest())
                 <a href="{{ route('paciente.index') }}">
                     <i class="pe-7s-user"></i>
                     <p>Pacientes</p>
                 </a>
-                @endif
             </li>
+            @endif
+            @if (Auth::user()->hasRole('atendente'))
             <li>
-                @if (!Auth::guest())
                 <a href="{{ route('categoria.index') }}">
                     <i class="pe-7s-note2"></i>
                     <p>Categorias</p>
                 </a>
-                @endif
             </li>
+            @endif
+            @if (Auth::user()->hasRole('atendente'))
             <li>
-                @if (!Auth::guest())
                 <a href="{{ route('servico.index') }}">
                     <i class="pe-7s-news-paper"></i>
                     <p>Serviços</p>
                 </a>
-                @endif
             </li>
+            @endif
+            @if (Auth::user()->hasRole('especialista'))
             <li>
-                @if (!Auth::guest())
                 <a href="{{ route('doenca.index') }}">
                     <i class="pe-7s-science"></i>
                     <p>Doenças</p>
                 </a>
-                @endif
             </li>
+            @endif
+            @if (Auth::user()->hasRole('atendente'))
             <li>
-                @if (!Auth::guest())
                 <a href="{{ route('especialista.index') }}">
                     <i class="pe-7s-map-marker"></i>
                     <p>Especialistas</p>
                 </a>
-                @endif
             </li>
+            @endif
+            @if (Auth::user()->hasRole('atendente'))
             <li>
-                @if (!Auth::guest())
                 <a href="{{ route('setor.index') }}">
                     <i class="pe-7s-bell"></i>
                     <p>Setores</p>
                 </a>
-                @endif
             </li>
+            @endif
+            @if (Auth::user()->hasRole('atendente'))
             <li>
-                @if (!Auth::guest())
                 <a href="{{ route('atendimento.index') }}">
                     <i class="pe-7s-bell"></i>
                     <p>Atendimentos</p>
                 </a>
-                @endif
             </li>
+            @endif
+            @if (Auth::user()->hasRole('paciente'))
+            <li>
+                <a href="{{ route('atendimento.atendimentos_paciente', Auth::user()->id) }}">
+                    <i class="pe-7s-bell"></i>
+                    <p>Atendimentos</p>
+                </a>
+            </li>
+            @endif
+            @if (Auth::user()->hasRole('especialista'))
+            <li>
+                <a href="{{ route('atendimento.atendimentos_especialista', Auth::user()->id) }}">
+                    <i class="pe-7s-bell"></i>
+                    <p>Atendimentos</p>
+                </a>
+            </li>
+            @endif
             <li>
                 <a href="notifications.html">
                     <i class="pe-7s-bell"></i>

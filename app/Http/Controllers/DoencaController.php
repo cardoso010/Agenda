@@ -20,8 +20,6 @@ class DoencaController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['especialista']);
-
         $doencas = Doenca::paginate(10);
 	   	return view('doenca.index', compact('doencas'));
     }

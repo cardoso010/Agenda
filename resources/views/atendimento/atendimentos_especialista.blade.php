@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">Atendimentos do {{ $especialista->user->name }}</h4>
+                    <h4 class="title">Atendimentos</h4>
                     <p class="category">Listagem de atendimentos</p>
                 </div>
                 <div class="content table-responsive table-full-width">
