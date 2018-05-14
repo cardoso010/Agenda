@@ -21,6 +21,7 @@ class CreatePacienteTable extends Migration
             $table->string('endereco');
             $table->string('bairro');
             $table->string('cidade');
+            $table->string('cep');
             $table->string('uf');
             $table->string('identidade');  
             $table->string('cpf');
