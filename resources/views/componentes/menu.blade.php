@@ -10,9 +10,7 @@
             <li>
                 <a href="dashboard.html">
                     <i class="pe-7s-graph"></i>
-                    <p>Dashboard {{ dump(Auth::user()->hasRole('atendente')) }} </p>
-                    <p>Dashboard {{ dump(Auth::user()->hasRole('especialista')) }} </p>
-                    <p>Dashboard {{ dump(Auth::user()->hasRole('paciente')) }} </p>
+                    <p>Dashboard</p>
                 </a>
             </li>
             @if (Auth::user()->hasRole('atendente'))
