@@ -82,7 +82,7 @@
 
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="endereco">CEP</label>
+								<label for="cep">CEP</label>
 								<input type="text" class="form-control" name="cep" id="cep" placeholder="CEP">
 							</div>
 						</div>

@@ -40,14 +40,14 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         if (!empty($request->file('image')) && $request->file('image')->isValid()) {
             $fileName = time() . '.' . $request->file('image')->getClientOriginalExtension();
             $request->file('image')->move($this->path, $fileName);
         } else {
             $fileName = '';
         }
-
+        
         $role_paciente  = Role::where('name', 'paciente')->first();
 
         $nome_paciente = $request->input('nome');

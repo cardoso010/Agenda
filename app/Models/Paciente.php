@@ -9,7 +9,7 @@ class Paciente extends Model
     protected $table = 'paciente';
 
     protected $fillable = ['nome', 'prontuario', 'data_nascimento', 'endereco', 
-                        'bairro', 'cidade', 'uf', 'identidade', 'cpf', 
+                        'bairro', 'cidade', 'uf', 'cep', 'identidade', 'cpf', 
                         'telefone', 'user_id'];
 
     public function user() {
