@@ -7,6 +7,9 @@
                 <ol class="breadcrumb panel-heading">
                     <li class="active">Categorias</li>
                 </ol>
+                <div class="form-group" style="float: right;">
+                    <p><a href="{{route('categoria.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Adicionar</a></p>
+                </div>
                 <div class="panel-body">
                     <table class="table table-bordered table-striped">
                         <thead>
