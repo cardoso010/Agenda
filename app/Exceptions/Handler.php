@@ -48,6 +48,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return response()->view('erro');
+        return parent::render($request, $exception);
     }
 }
