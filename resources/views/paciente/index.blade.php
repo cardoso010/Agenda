@@ -9,7 +9,11 @@
                     <p class="category">Listagem de pacientes</p>
                 </div>
                 <div class="form-group" style="float: right;">
-                    <p><a href="{{route('paciente.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Adicionar</a></p>
+                    <div clas="row">
+                        <div class="col-md-12">
+                            <a href="{{route('paciente.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Adicionar</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="content table-responsive table-full-width">
                     <table class="table table-hover table-striped">
@@ -34,11 +38,17 @@
                                             Atendimentos
                                         </a>
                                     </td>
-                                    <td width="155" class="text-center">
-                                        <a href="{{route('paciente.edit', $paciente->id)}}" class="btn btn-default">Editar</a>
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['paciente.destroy', $paciente->id]]) !!}
-                                            {!! Form::submit('Excluir', ['class' => 'btn btn-danger']) !!}
-                                        {!! Form::close() !!}
+                                    <td class="text-center">
+                                       <div class="row">
+                                        <div class="col-md-6">
+                                            <a href="{{route('paciente.edit', $paciente->id)}}" class="btn btn-default btn-sm">Editar</a>
+                                        </div>
+                                        <div class="col-md-6">
+                                            {!! Form::open(['method' => 'DELETE', 'route' => ['paciente.destroy', $paciente->id]]) !!}
+                                                {!! Form::submit('Excluir', ['class' => 'btn btn-danger btn-sm']) !!}
+                                            {!! Form::close() !!}
+                                        </div>
+                                       </div>
                                     </td>
                                 </tr>
                             @endforeach

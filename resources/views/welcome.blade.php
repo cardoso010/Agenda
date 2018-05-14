@@ -12,7 +12,7 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Cadastrar</a>
+                        <!--<a href="{{ route('register') }}">Cadastrar</a> -->
                     @endauth
                 </div>
             @endif
@@ -22,7 +22,7 @@
                 <div class="content">
                     <div class="container-fluid">
                         <div class="row">
-                            <h1>Sistema de Agendamento</h1>
+                            <img src="{{ asset('img/logo.jpeg') }}" alt="" width="25%" style="border-radius : 10%" />
                         </div>
                     </div>
                 </div>

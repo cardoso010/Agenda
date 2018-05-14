@@ -1,13 +1,13 @@
 <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
     <div class="sidebar-wrapper">
         <div class="logo">
-            <a href="http://www.creative-tim.com" class="simple-text">
-                Agenda
+            <a href="#" class="simple-text">
+                <img src="{{ asset('img/logo.jpeg') }}" alt="" width="90" style="border-radius : 10%" />
             </a>
         </div>
 
         <ul class="nav">
-            <li class="active">
+            <li>
                 <a href="dashboard.html">
                     <i class="pe-7s-graph"></i>
                     <p>Dashboard</p>
@@ -85,18 +85,6 @@
                 </a>
             </li>
             @endif
-            <li>
-                <a href="notifications.html">
-                    <i class="pe-7s-bell"></i>
-                    <p>Notifications</p>
-                </a>
-            </li>
-            <li class="active-pro">
-                <a href="upgrade.html">
-                    <i class="pe-7s-rocket"></i>
-                    <p>Upgrade to PRO</p>
-                </a>
-            </li>
         </ul>
     </div>
 </div>

@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">Atendimentos do {{ $paciente->nome }}</h4>
+                    <h4 class="title">Atendimentos do {{ isset($paciente->nome) ? $paciente->nome : 'Paciente' }}</h4>
                     <p class="category">Listagem de atendimentos</p>
                 </div>
                 <div class="content table-responsive table-full-width">
