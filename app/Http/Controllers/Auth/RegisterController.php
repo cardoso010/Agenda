@@ -63,15 +63,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $role_paciente  = Role::where('name', 'paciente')->first();
+
         $user = User::create([
             'name'     => $data['name'],
             'email'    => $data['email'],
             'foto'    => $data['foto'],
             'password' => bcrypt($data['password']),
+            'role' => $role_paciente->id
         ]);
         $user
             ->roles()
-            ->attach(Role::where('name', 'paciente')->first());
+            ->attach($role_paciente);
         return $user;
     }
 }

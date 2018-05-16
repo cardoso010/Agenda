@@ -56,7 +56,8 @@ class PacienteController extends Controller
             'name' => $nome_paciente,
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
-            'foto' => $fileName
+            'foto' => $fileName,
+            'role' => $role_paciente->id
         ]);
         $usuario->roles()->attach($role_paciente);
         
