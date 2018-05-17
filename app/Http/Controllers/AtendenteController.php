@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Especialista;
+use App\Models\Atendente;
 use App\Models\Atendimento;
 use App\User;
 use App\Role;
 use Illuminate\Http\Request;
 
-class EspecialistaController extends Controller
+class AtendenteController extends Controller
 {
-    //
 
+    //
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +19,8 @@ class EspecialistaController extends Controller
      */
     public function index(Request $request)
     {
-        $especialistas = Especialista::paginate(10);
-	   	return view('especialista.index', compact('especialistas'));
+        $atendentes = Atendente::paginate(10);
+	   	return view('atendente.index', compact('atendentes'));
     }
 
     /**
@@ -30,7 +30,7 @@ class EspecialistaController extends Controller
      */
     public function create()
     {
-        return view('especialista.add');
+        return view('atendente.add');
     }
 
     /**
@@ -40,34 +40,35 @@ class EspecialistaController extends Controller
      */
     public function store(Request $request)
     {
+        
         if (!empty($request->file('image')) && $request->file('image')->isValid()) {
             $fileName = time() . '.' . $request->file('image')->getClientOriginalExtension();
             $request->file('image')->move($this->path, $fileName);
         } else {
             $fileName = '';
         }
-
-        $role_especialista  = Role::where('name', 'especialista')->first();
-
-        $nome_especialista = $request->input('nome');
+        
+        $role_atendente = Role::where('name', 'atendente')->first();
 
         $usuario = User::create([
-            'name' => $nome_especialista,
+            'name' => $request->input('nome'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
             'foto' => $fileName,
-            'role' => $role_especialista->id
+            'role' => $role_atendente->id
         ]);
-        $usuario->roles()->attach($role_especialista);
+        $usuario->roles()->attach($role_atendente);
         
-        $especialista = Especialista::create([
+        $atendente = Atendente::create([
             'perfil' => $request->input('perfil'),
-            'cargo_espec' => $request->input('cargo_espec'),
-            'crm_mat' => $request->input('crm_mat'),
+            'cargo' => $request->input('cargo'),
+            'matricula' => $request->input('matricula'),
+            'setor' => $request->input('setor'),
+            'local' => $request->input('local'),
             'user_id' => $usuario->id
         ]);
 
-    	return redirect()->route('especialista.index');	
+    	return redirect()->route('atendente.index');	
     }
 
     /**
@@ -89,13 +90,14 @@ class EspecialistaController extends Controller
      */
     public function edit($id)
     {
-        $especialista = Especialista::find($id);
 
-        if(!$especialista){
-            return redirect()->route('especialista.index');
+        $atendente = Atendente::find($id);
+
+        if(!$atendente){
+            return redirect()->route('atendente.index');
         }
 
-        return view('especialista.edit', compact('especialista'));
+        return view('atendente.edit', compact('atendente'));
     }
 
     /**
@@ -108,13 +110,15 @@ class EspecialistaController extends Controller
     {
         $update =[
             'perfil' => $request->input('perfil'),
-            'cargo_espec' => $request->input('cargo_espec'),
-            'crm_mat' => $request->input('crm_mat')
+            'cargo' => $request->input('cargo'),
+            'matricula' => $request->input('matricula'),
+            'setor' => $request->input('setor'),
+            'local' => $request->input('local')
         ];
         
-        $result = Especialista::find($id)->update($update);
+        $result = Atendente::find($id)->update($update);
         
-        return redirect()->route('especialista.index');
+        return redirect()->route('atendente.index');
     }
 
     /**
@@ -125,15 +129,15 @@ class EspecialistaController extends Controller
      */
     public function destroy($id)
     {
-        $especialista =  Especialista::find($id);
+        $atendente =  Atendente::find($id);
 
-        if($especialista){
-            User::find($especialista->user->id)->delete();
+        if($atendente){
+            User::find($atendente->user->id)->delete();
             //$category->products()->detach();
-            $result = $especialista->delete();
+            $result = $atendente->delete();
         }
 
-        return redirect()->route('especialista.index');
+        return redirect()->route('atendente.index');
     }
 
 }

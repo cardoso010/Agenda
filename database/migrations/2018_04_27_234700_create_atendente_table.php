@@ -15,12 +15,12 @@ class CreateAtendenteTable extends Migration
     {
         Schema::create('atendente', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('perfil');
-            $table->string('cargo');
-            $table->integer('matricula');
-            $table->integer('setor');
-            $table->string('local');
-            $table->integer('user_id')->unsigned()->nullable();;
+            $table->string('perfil')->nullable();
+            $table->string('cargo')->nullable();
+            $table->integer('matricula')->nullable();
+            $table->integer('setor')->nullable();
+            $table->string('local')->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->timestamps();
         });
 

@@ -47,7 +47,6 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-    
         if($user->hasRole('atendente')){
             return redirect('/home');
         } else if($user->hasRole('especialista')){

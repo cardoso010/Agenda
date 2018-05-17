@@ -147,6 +147,7 @@ class PacienteController extends Controller
         $paciente =  Paciente::find($id);
 
         if($paciente){
+            User::find($paciente->user->id)->delete();
             //$category->products()->detach();
             $result = $paciente->delete();
         }

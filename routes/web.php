@@ -29,6 +29,8 @@ Route::resource('paciente', 'PacienteController')->middleware('auth');
 
 Route::resource('especialista', 'EspecialistaController')->middleware('auth');
 
+Route::resource('atendente', 'AtendenteController')->middleware('auth');
+
 Route::resource('doenca', 'DoencaController')->middleware('auth');
 Route::put('/doenca/search', ['uses'=>'DoencaController@search', 'as'=>'doenca.search']);
 

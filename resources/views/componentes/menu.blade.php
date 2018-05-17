@@ -15,6 +15,14 @@
             </li>
             @if (Auth::user()->hasRole('atendente'))
             <li>
+                <a href="{{ route('atendente.index') }}">
+                    <i class="pe-7s-map-marker"></i>
+                    <p>Atendentes</p>
+                </a>
+            </li>
+            @endif
+            @if (Auth::user()->hasRole('atendente'))
+            <li>
                 <a href="{{ route('paciente.index') }}">
                     <i class="pe-7s-user"></i>
                     <p>Pacientes</p>
