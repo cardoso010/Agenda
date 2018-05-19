@@ -73,16 +73,18 @@ class AtendimentoController extends Controller
     public function edit($id)
     {
         $atendimento = Atendimento::find($id);
-
-        if(!empty($servico)){
+        
+        if(!empty($atendimento)){
             $servicos = Servico::pluck('nome', 'id');
             $pacientes = Paciente::pluck('nome', 'id');
             $setores = Setor::pluck('nome', 'id');
-            $especialistas = Especialista::pluck('user.name', 'id');
+            $especialistas = Especialista::with('user')->get()->pluck('user.name', 'id');
+
+
             return view('atendimento.edit', compact('atendimento', 'servicos', 'pacientes', 'setores', 'especialistas'));
         }
 
-        return redirect()->route('atendimento.edit');
+        return redirect()->route('atendimento.index');
     }
 
     /**

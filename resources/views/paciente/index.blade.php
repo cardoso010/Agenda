@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    <script>
+        var pacientes = @json($pacientes).data;
+    </script>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -8,9 +11,17 @@
                     <h4 class="title">Pacientes</h4>
                     <p class="category">Listagem de pacientes</p>
                 </div>
-                <div class="form-group" style="float: right;">
-                    <div clas="row">
-                        <div class="col-md-12">
+
+                <br>
+                <div class="form-group">
+                    <div clas="row" style="display : flex; align-items : center;">
+                        <div class="col-md-4">
+                            <div class="form-group">
+								<label for="nome">Pesquisar por cpf</label>
+								<input type="text" class="form-control busca-cpf" name="cpf" id="cpf" placeholder="Cpf">
+							</div>
+                        </div>
+                        <div class="col-md-8">
                             <a href="{{route('paciente.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Adicionar</a>
                         </div>
                     </div>

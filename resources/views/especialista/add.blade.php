@@ -34,14 +34,13 @@
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="perfil">Perfil</label>
-								<input type="text" class="form-control" name="perfil" id="perfil" placeholder="Perfil">
+								<label for="cargo_espec">Especialidade</label>
+								<input type="text" class="form-control" name="cargo_espec" id="cargo_espec" placeholder="Cargo">
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="cargo_espec">Cargo</label>
-								<input type="text" class="form-control" name="cargo_espec" id="cargo_espec" placeholder="Cargo">
+								<input type="hidden" class="form-control" name="perfil" id="perfil" placeholder="Perfil" value="0">
 							</div>
 						</div>
 					</div>

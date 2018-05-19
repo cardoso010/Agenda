@@ -10,3 +10,12 @@
 .container-fluid .row{
     text-align: center;
 }
+.acesso{
+    text-align: center;
+}
+.acesso a{
+    background: whitesmoke;;
+    font-size: 2.3em;
+    border-radius: 10px;
+    margin: 10px 0px;
+}

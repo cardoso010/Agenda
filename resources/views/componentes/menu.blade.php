@@ -87,7 +87,7 @@
             @endif
             @if (Auth::user()->hasRole('especialista'))
             <li>
-                <a href="{{ route('atendimento.atendimentos_especialista', Auth::user()->id) }}">
+                <a href="{{ route('atendimento.index')}}">
                     <i class="pe-7s-bell"></i>
                     <p>Atendimentos</p>
                 </a>

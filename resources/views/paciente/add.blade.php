@@ -28,6 +28,47 @@
 
 					</div>
 
+
+					<div class="row">
+
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="cep">CEP</label>
+								<input type="text" class="form-control" name="cep" id="cep" placeholder="CEP">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="bairro">Bairro</label>
+								<input type="text" class="form-control" name="bairro" id="bairro" placeholder="Bairro">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="endereco">Endereço</label>
+								<input type="text" class="form-control" name="endereco" id="endereco" placeholder="Endereço">
+							</div>
+						</div>
+
+						</div>
+
+						<div class="row">
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="cidade">Cidade</label>
+								<input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade">
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="form-group">
+								<label for="uf">UF</label>
+								<input type="text" class="form-control" name="uf" id="uf" placeholder="UF">
+							</div>
+						</div>
+
+					</div>
+
 					<div class="row">
 						<div class="col-md-4">
 							<div class="form-group">
@@ -66,62 +107,23 @@
 						</div>
 					
 					</div>
-					
-					<div class="row">
-
-						<div class="col-md-12 pr-1">
-							<div class="form-group">
-								<label for="prontuario">Prontuario</label>
-								<textarea class="form-control" name="prontuario" id="prontuario" placeholder="Prontuario" rows="10"></textarea>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="row">
-
-						<div class="col-md-4">
-							<div class="form-group">
-								<label for="cep">CEP</label>
-								<input type="text" class="form-control" name="cep" id="cep" placeholder="CEP">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label for="bairro">Bairro</label>
-								<input type="text" class="form-control" name="bairro" id="bairro" placeholder="Bairro">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label for="endereco">Endereço</label>
-								<input type="text" class="form-control" name="endereco" id="endereco" placeholder="Endereço">
-							</div>
-						</div>
-
-					</div>
-
-					<div class="row">
-
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="cidade">Cidade</label>
-								<input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="uf">UF</label>
-								<input type="text" class="form-control" name="uf" id="uf" placeholder="UF">
-							</div>
-						</div>
-						
-					</div>
 
 					<div class="control-group">
 						<div class="controls">
 							<input name="image" type="file">
 						</div>
+					</div>
+
+
+					<div class="row" style="opacity : {{ (Auth::user()->hasRole('atendente')) ? 0 : 1 }}">
+
+						<div class="col-md-12 pr-1">
+							<div class="form-group">
+								<label for="prontuario">Prontuario</label>
+								<textarea class="form-control" name="prontuario" id="prontuario" placeholder="Prontuario"></textarea>
+							</div>
+						</div>
+
 					</div>
 					
 					<br />

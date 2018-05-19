@@ -52,3 +52,36 @@ validarCPF = (cpf) =>{
     });
     return result;
 }
+
+
+
+
+$('.busca-cpf').on('blur', () =>{
+    let cpf = $('#cpf').val();
+    
+    if(cpf.length != 14){
+        alert("Digite um cpf valido")
+        return;
+    };
+    
+    let paciente = pacientes.find(paciente => paciente.cpf === cpf);
+    if(!paciente){
+        let ok = confirm('Este cpf não existe deseja criar um paciente ?');
+        if(ok){
+            document.location = `/paciente/create?cpf=${cpf}`;
+        }
+    }else{
+        document.location = `/paciente/${paciente.id}/edit`;
+    }
+});
+
+
+
+try{
+    var url_atual = window.location.href.split("?");
+    if(url_atual.length > 0){
+        let cpf = url_atual[1].split("cpf=")[1];
+        $("#cpf").val(cpf);
+    }
+}catch(e){};
+

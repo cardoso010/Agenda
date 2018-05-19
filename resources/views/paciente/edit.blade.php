@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
+<div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
             	<ol class="breadcrumb panel-heading">
@@ -30,6 +29,46 @@
 						</div>
 
 					</div>
+
+					<div class="row">
+
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="endereco">CEP</label>
+								<input type="text" class="form-control" name="cep" id="cep" placeholder="CEP" value="{{ $paciente->cep }}">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="bairro">Bairro</label>
+								<input type="text" class="form-control" name="bairro" id="bairro" placeholder="Bairro" value="{{ $paciente->bairro }}">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="endereco">Endereço</label>
+								<input type="text" class="form-control" name="endereco" id="endereco" placeholder="Endereço" value="{{ $paciente->endereco }}">
+							</div>
+						</div>
+
+					</div>
+
+						<div class="row">
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="cidade">Cidade</label>
+									<input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade" value="{{ $paciente->cidade }}">
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group">
+									<label for="uf">UF</label>
+									<input type="text" class="form-control" name="uf" id="uf" placeholder="UF" value="{{ $paciente->uf }}">
+								</div>
+							</div>
+
+						</div>
 
 					<div class="row">
 						<div class="col-md-4">
@@ -69,56 +108,14 @@
 						</div>
 					
 					</div>
-					
-					<div class="row">
 
-						<div class="col-md-12 pr-1">
+					<div class="row" style="opacity : {{ (Auth::user()->hasRole('atendente')) ? 0 : 1 }}">
+						<div class="col-md-12">
 							<div class="form-group">
-								<label for="prontuario">Prontuario</label>
-								<textarea class="form-control" name="prontuario" id="prontuario" placeholder="Prontuario" rows="10" value="{{ $paciente->prontuario }}"></textarea>
+								<label for="email">Prontuatio</label>
+								<textarea class="form-control" name="prontuario" id="prontuario" placeholder="Prontuario" value="{{ $paciente->prontuario }}" > </textarea>
 							</div>
 						</div>
-
-					</div>
-
-					<div class="row">
-
-						<div class="col-md-4">
-							<div class="form-group">
-								<label for="endereco">CEP</label>
-								<input type="text" class="form-control" name="cep" id="cep" placeholder="CEP" value="{{ $paciente->cep }}">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label for="bairro">Bairro</label>
-								<input type="text" class="form-control" name="bairro" id="bairro" placeholder="Bairro" value="{{ $paciente->bairro }}">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label for="endereco">Endereço</label>
-								<input type="text" class="form-control" name="endereco" id="endereco" placeholder="Endereço" value="{{ $paciente->endereco }}">
-							</div>
-						</div>
-
-					</div>
-
-					<div class="row">
-
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="cidade">Cidade</label>
-								<input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade" value="{{ $paciente->cidade }}">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="uf">UF</label>
-								<input type="text" class="form-control" name="uf" id="uf" placeholder="UF" value="{{ $paciente->uf }}">
-							</div>
-						</div>
-						
 					</div>
 
 					<div class="control-group">
@@ -128,11 +125,12 @@
 					</div>
 					
 					<br />
-					<button type="submit" class="btn btn-primary">Salvar</button>
+					@if (!Auth::user()->hasRole('paciente'))
+						<button type="submit" class="btn btn-primary">Salvar</button>
+					@endif
 	                </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

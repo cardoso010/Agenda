@@ -8,9 +8,9 @@ class Paciente extends Model
 {
     protected $table = 'paciente';
 
-    protected $fillable = ['nome', 'prontuario', 'data_nascimento', 'endereco', 
+    protected $fillable = ['nome','prontuario', 'data_nascimento', 'endereco', 
                         'bairro', 'cidade', 'uf', 'cep', 'identidade', 'cpf', 
-                        'telefone', 'user_id'];
+                        'telefone','numero','complemento', 'user_id'];
 
     public function user() {
         return $this->belongsTo(User::class);
