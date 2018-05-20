@@ -53,9 +53,9 @@
 							</div>
 						</div>
 						<div class="col-md-6">
-							<div class="control-group">
+							<div class="control-group" style="opacity: 0;">
 								<div class="controls">
-									<input name="image" type="file">
+									<input name="image" type="hidden" value="0">
 								</div>
 							</div>
 						</div>

@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Registrar</div>
+                <div class="panel-heading">Cadastrar super Usuário</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
@@ -64,8 +64,8 @@
                         <div class="form-group{{ $errors->has('foto') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Foto</label>
 
-                            <div class="col-md-6">
-                                <input id="foto" type="text" class="form-control" name="foto" value="{{ old('name') }}" required autofocus>
+                            <div class="col-md-6" style="opacity : 0">
+                                <input id="foto" type="hidden" class="form-control" name="foto" value="1" required autofocus>
 
                                 @if ($errors->has('foto'))
                                     <span class="help-block">
