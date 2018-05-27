@@ -67,10 +67,7 @@ $('.busca-cpf').on('blur', () =>{
     
     let paciente = pacientes.find(paciente => paciente.cpf === cpf);
     if(!paciente){
-        let ok = confirm('Este cpf não existe deseja criar um paciente ?');
-        if(ok){
-            document.location = `/paciente/create?cpf=${cpf}`;
-        }
+        document.location = `/paciente/create?cpf=${cpf}`;
     }else{
         document.location = `/paciente/${paciente.id}/edit`;
     }
@@ -84,10 +81,7 @@ $('.busca-cpf-at').on('blur', () =>{
     
     let paciente = pacientes.find(paciente => paciente.cpf === cpf);
     if(!paciente){
-        let ok = confirm('Este cpf não existe deseja criar um paciente ?');
-        if(ok){
-            document.location = `/paciente/create?cpf=${cpf}`;
-        }
+        document.location = `/paciente/create?cpf=${cpf}`;
     }else{
         document.location = `/paciente/${paciente.id}/edit`;
     }
