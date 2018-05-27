@@ -4,7 +4,6 @@
     <script>
         var pacientes = @json($pacientes).data;
         var atendimentos = @json($atendimentos).data;
-        console.log(atendimentos);
     </script>
     <div class="panel panel-default">
         <div class="panel-heading">Dashboard</div>
@@ -25,9 +24,9 @@
                                 <input type="text" class="form-control busca-cpf" name="cpf" id="cpf" placeholder="Cpf">
                             </div>
                         </div>
-                        <div class="col-md-2">
+                       <!-- <div class="col-md-2">
                             <a href="{{route('paciente.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Adicionar</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             @endif

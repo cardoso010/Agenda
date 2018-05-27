@@ -74,6 +74,7 @@ class PacienteController extends Controller
             'identidade' => $request->input('identidade'),
             'cpf' => $request->input('cpf'),
             'telefone' => $request->input('telefone'),
+            'complemento' => $request->input('complemento'),
             'user_id' => $usuario->id
         ]);
 
@@ -133,7 +134,7 @@ class PacienteController extends Controller
             'identidade' => $request->input('identidade'),
             'cpf' => $request->input('cpf'),
             'telefone' => $request->input('telefone'),
-            'cpf' => $request->input('cpf')
+            'complemento' => $request->input('complemento')
         ];
         
         $result = Paciente::find($id)->update($update);

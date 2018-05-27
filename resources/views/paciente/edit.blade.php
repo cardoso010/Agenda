@@ -55,16 +55,22 @@
 
 						<div class="row">
 
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<div class="form-group">
 									<label for="cidade">Cidade</label>
 									<input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade" value="{{ $paciente->cidade }}">
 								</div>
 							</div>
-							<div class="col-md-2">
+							<div class="col-md-4">
 								<div class="form-group">
 									<label for="uf">UF</label>
 									<input type="text" class="form-control" name="uf" id="uf" placeholder="UF" value="{{ $paciente->uf }}">
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="uf">Complemento</label>
+									<input type="text" class="form-control" name="complemento" id="complemento" placeholder="Complemento" value="{{ $paciente->complemento }}">
 								</div>
 							</div>
 
@@ -125,7 +131,7 @@
 					</div>
 					
 					<br />
-					@if (!Auth::user()->hasRole('paciente'))
+					@if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0))
 						<button type="submit" class="btn btn-primary">Salvar</button>
 					@endif
 	                </form>

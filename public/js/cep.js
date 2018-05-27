@@ -69,23 +69,15 @@ $('.busca-cpf').on('blur', () =>{
     if(!paciente){
         document.location = `/paciente/create?cpf=${cpf}`;
     }else{
-        document.location = `/paciente/${paciente.id}/edit`;
+        let atendimento = atendimentos.find(atendimento => atendimento.paciente_id === paciente.id);
+        if(atendimento){
+            document.location = `/atendimento/${atendimento.id}/edit`;
+        }else{
+            document.location = `/atendimento/create`;
+        }
     }
 });
 
-
-
-$('.busca-cpf-at').on('blur', () =>{
-    let cpf = $('#cpf-at').val();
-    
-    
-    let paciente = pacientes.find(paciente => paciente.cpf === cpf);
-    if(!paciente){
-        document.location = `/paciente/create?cpf=${cpf}`;
-    }else{
-        document.location = `/paciente/${paciente.id}/edit`;
-    }
-});
 
 
 
