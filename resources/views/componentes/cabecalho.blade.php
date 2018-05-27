@@ -3,12 +3,14 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="#"> 
             
-        @if (Auth::user()->hasRole('atendente'))
+        @if (Auth::user()->hasRole('atendente') && (!Auth::user()->role == 0))
             Atendente : {{ Auth::user()->name }} 
-        @elseif (Auth::user()->hasRole('especialista'))
+        @elseif (Auth::user()->hasRole('especialista') && (!Auth::user()->role == 0))
             Especialista : {{ Auth::user()->name }} 
-        @elseif (Auth::user()->hasRole('paciente'))
-            Paciente : {{ Auth::user()->name }} 
+        @elseif (Auth::user()->hasRole('paciente') && (!Auth::user()->role == 0))
+            Paciente : {{ Auth::user()->name }}
+        @elseif (Auth::user()->role == 0)
+            Super Usuário : {{ Auth::user()->name }} 
         @endif
     
         </a>
