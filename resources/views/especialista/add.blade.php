@@ -5,11 +5,14 @@
 	<div class="col-md-12">
 		<div class="card" style="padding: 10px;">
 			<div class="card-header">
-				<h4 class="card-title">Especialista</h4>
+				<h4 class="card-title">ESPECIALISTA</h4>
 			</div>
 			<div class="card-body">
 				<form action="{{ route('especialista.store') }}" method="POST" enctype="multipart/form-data">
 					{{ csrf_field() }}
+
+					<input name="image" type="hidden" value="0">
+					<input type="hidden" name="perfil" id="perfil" placeholder="Perfil" value="0">
 
 					<div class="row">
 						<div class="col-md-6">
@@ -25,22 +28,24 @@
 							</div>
 						</div>
 					</div>
+
 					<div class="row">
-						<div class="col-md-4">
+						<div class="col-md-6">
 							<div class="form-group">
 								<label for="password">Senha</label>
 								<input type="password" class="form-control" name="password" id="password" placeholder="Senha">
 							</div>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-6">
 							<div class="form-group">
 								<label for="cargo_espec">Especialidade</label>
-								<input type="text" class="form-control" name="cargo_espec" id="cargo_espec" placeholder="Cargo">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<input type="hidden" class="form-control" name="perfil" id="perfil" placeholder="Perfil" value="0">
+								<select name="cargo_espec" class="form-control" id="cargo_espec">
+									<option value="Clinico geral">Clinico geral</option>
+									<option value="Cardiologia">Cardiologia</option>
+									<option value="Ortopedia" >Ortopedia</option>
+									<option value="Pediatria">Pediatria</option>
+									<option value="Oftalmologia">Oftalmologia</option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -53,11 +58,14 @@
 							</div>
 						</div>
 						<div class="col-md-6">
-							<div class="control-group" style="opacity: 0;">
-								<div class="controls">
-									<input name="image" type="hidden" value="0">
-								</div>
-							</div>
+							<label for="setor">Unidade</label>
+							<select name="hospital" class="form-control" id="hospital">
+								<option value="UPA Rocinha"> UPA Rocinha</option>
+								<option value=">UPA Cidade de Deus">UPA Cidade de Deus</option>
+								<option value="UPA Praca Seca" >UPA Praca Seca</option>
+								<option value="UPA Praca Sec">UPA São Cristóvão</option>
+								<option value="Taquara">Taquara</option>
+							</select>
 						</div>
 					</div>
 					

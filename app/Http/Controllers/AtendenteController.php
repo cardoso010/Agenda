@@ -65,7 +65,8 @@ class AtendenteController extends Controller
             'matricula' => $request->input('matricula'),
             'setor' => $request->input('setor'),
             'local' => $request->input('local'),
-            'user_id' => $usuario->id
+            'user_id' => $usuario->id,
+            'hospital' => $request->input('hospital')
         ]);
 
     	return redirect()->route('atendente.index');	

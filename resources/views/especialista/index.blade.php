@@ -5,8 +5,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">Especialistas</h4>
-                    <p class="category">Listagem de especialista</p>
+                    <h4 class="title">ESPECIALISTAS</h4>
+                    <p class="category">LISTAGEM DE ESPECIALISTAS</p>
                 </div>
                 <div class="form-group" style="float: right;">
                     <p><a href="{{route('especialista.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Adicionar</a></p>

@@ -5,8 +5,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">Atendimentos</h4>
-                    <p class="category">Listagem de atendimentos</p>
+                    <h4 class="title">ATENDIMENTOS</h4>
+                    <p class="category">LISTAGEM DE ATENDIMENTOS</p>
                 </div>
                 <div class="content table-responsive table-full-width">
                     <table class="table table-hover table-striped">

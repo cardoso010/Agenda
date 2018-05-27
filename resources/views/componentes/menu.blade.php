@@ -7,13 +7,7 @@
         </div>
 
         <ul class="nav">
-            <li>
-                <a href="dashboard.html">
-                    <i class="pe-7s-graph"></i>
-                    <p>Dashboard</p>
-                </a>
-            </li>
-            @if (Auth::user()->hasRole('atendente'))
+            @if (Auth::user()->role == 0)
             <li>
                 <a href="{{ route('atendente.index') }}">
                     <i class="pe-7s-map-marker"></i>
@@ -21,7 +15,7 @@
                 </a>
             </li>
             @endif
-            @if (Auth::user()->hasRole('atendente'))
+            @if (!Auth::user()->hasRole('paciente')  || (Auth::user()->role == 0))
             <li>
                 <a href="{{ route('paciente.index') }}">
                     <i class="pe-7s-user"></i>
@@ -29,7 +23,7 @@
                 </a>
             </li>
             @endif
-            @if (Auth::user()->hasRole('atendente'))
+            @if (Auth::user()->role == 0)
             <li>
                 <a href="{{ route('categoria.index') }}">
                     <i class="pe-7s-note2"></i>
@@ -37,7 +31,7 @@
                 </a>
             </li>
             @endif
-            @if (Auth::user()->hasRole('atendente'))
+            @if (Auth::user()->role == 0)
             <li>
                 <a href="{{ route('servico.index') }}">
                     <i class="pe-7s-news-paper"></i>
@@ -45,7 +39,7 @@
                 </a>
             </li>
             @endif
-            @if (Auth::user()->hasRole('especialista'))
+            @if (Auth::user()->role == 0)
             <li>
                 <a href="{{ route('doenca.index') }}">
                     <i class="pe-7s-science"></i>
@@ -53,7 +47,7 @@
                 </a>
             </li>
             @endif
-            @if (Auth::user()->hasRole('atendente'))
+            @if (Auth::user()->role == 0)
             <li>
                 <a href="{{ route('especialista.index') }}">
                     <i class="pe-7s-map-marker"></i>
@@ -61,7 +55,7 @@
                 </a>
             </li>
             @endif
-            @if (Auth::user()->hasRole('atendente'))
+            @if (Auth::user()->role == 0)
             <li>
                 <a href="{{ route('setor.index') }}">
                     <i class="pe-7s-bell"></i>
@@ -69,30 +63,12 @@
                 </a>
             </li>
             @endif
-            @if (Auth::user()->hasRole('atendente'))
             <li>
                 <a href="{{ route('atendimento.index') }}">
                     <i class="pe-7s-bell"></i>
                     <p>Atendimentos</p>
                 </a>
             </li>
-            @endif
-            @if (Auth::user()->hasRole('paciente'))
-            <li>
-                <a href="{{ route('atendimento.atendimentos_paciente', Auth::user()->id) }}">
-                    <i class="pe-7s-bell"></i>
-                    <p>Atendimentos</p>
-                </a>
-            </li>
-            @endif
-            @if (Auth::user()->hasRole('especialista'))
-            <li>
-                <a href="{{ route('atendimento.index')}}">
-                    <i class="pe-7s-bell"></i>
-                    <p>Atendimentos</p>
-                </a>
-            </li>
-            @endif
         </ul>
     </div>
 </div>

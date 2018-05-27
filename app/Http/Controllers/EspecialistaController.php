@@ -7,6 +7,7 @@ use App\Models\Atendimento;
 use App\User;
 use App\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EspecialistaController extends Controller
 {
@@ -64,7 +65,8 @@ class EspecialistaController extends Controller
             'perfil' => $request->input('perfil'),
             'cargo_espec' => $request->input('cargo_espec'),
             'crm_mat' => $request->input('crm_mat'),
-            'user_id' => $usuario->id
+            'user_id' => $usuario->id,
+            'hospital' => $request->input('hospital'),
         ]);
 
     	return redirect()->route('especialista.index');	
@@ -89,7 +91,11 @@ class EspecialistaController extends Controller
      */
     public function edit($id)
     {
-        $especialista = Especialista::find($id);
+        $especialista = DB::table('especialista')
+        ->join('users', 'especialista.user_id', '=', 'users.id')
+        ->select('especialista.*', 'users.email','users.password','users.name')
+        ->where('especialista.id', '=', $id)
+        ->first();
 
         if(!$especialista){
             return redirect()->route('especialista.index');
@@ -109,7 +115,8 @@ class EspecialistaController extends Controller
         $update =[
             'perfil' => $request->input('perfil'),
             'cargo_espec' => $request->input('cargo_espec'),
-            'crm_mat' => $request->input('crm_mat')
+            'crm_mat' => $request->input('crm_mat'),
+            'hospital' => $request->input('hospital'),
         ];
         
         $result = Especialista::find($id)->update($update);

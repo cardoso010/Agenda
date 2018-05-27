@@ -1,5 +1,6 @@
 
 $("#cpf").mask("999.999.999-99");
+$("#cpf-at").mask("999.999.999-99");
 $("#telefone").mask("(99) 99999-9999");
 $("#cep").mask("99999-999");
 $("#identidade").mask('99.999.999-9'); 
@@ -63,6 +64,23 @@ $('.busca-cpf').on('blur', () =>{
         alert("Digite um cpf valido")
         return;
     };
+    
+    let paciente = pacientes.find(paciente => paciente.cpf === cpf);
+    if(!paciente){
+        let ok = confirm('Este cpf não existe deseja criar um paciente ?');
+        if(ok){
+            document.location = `/paciente/create?cpf=${cpf}`;
+        }
+    }else{
+        document.location = `/paciente/${paciente.id}/edit`;
+    }
+});
+
+
+
+$('.busca-cpf-at').on('blur', () =>{
+    let cpf = $('#cpf-at').val();
+    
     
     let paciente = pacientes.find(paciente => paciente.cpf === cpf);
     if(!paciente){

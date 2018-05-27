@@ -5,11 +5,13 @@
 	<div class="col-md-12">
 		<div class="card" style="padding: 10px;">
 			<div class="card-header">
-				<h4 class="card-title">Atendente</h4>
+				<h4 class="card-title">ATENDENTE</h4>
 			</div>
 			<div class="card-body">
 				<form action="{{ route('atendente.store') }}" method="POST" enctype="multipart/form-data">
 					{{ csrf_field() }}
+
+					<input type="hidden" name="image" value="1">
 
 					<div class="row">
 						<div class="col-md-6">
@@ -55,7 +57,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="setor">Setor</label>
-								<input type="number" class="form-control" name="setor" id="setor" max="99999999999" placeholder="Setor">
+								<input type="text" class="form-control" name="setor" id="setor" placeholder="Setor">
 							</div>
 						</div>
 					</div>
@@ -69,9 +71,14 @@
 						</div>
 						<div class="col-md-6">
 							<div class="control-group">
-								<div class="controls">
-									<input name="image" type="file">
-								</div>
+								<label for="setor">Unidade</label>
+								<select name="hospital" class="form-control" id="hospital">
+									<option value="UPA Rocinha"> UPA Rocinha</option>
+									<option value=">UPA Cidade de Deus">UPA Cidade de Deus</option>
+									<option value="UPA Praca Seca" >UPA Praca Seca</option>
+									<option value="UPA Praca Sec">UPA São Cristóvão</option>
+									<option value="Taquara">Taquara</option>
+								</select>
 							</div>
 						</div>
 					</div>

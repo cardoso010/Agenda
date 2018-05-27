@@ -61,7 +61,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('foto') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('foto') ? ' has-error' : '' }}" style="opacity : 0">
                             <label for="name" class="col-md-4 control-label">Foto</label>
 
                             <div class="col-md-6" style="opacity : 0">

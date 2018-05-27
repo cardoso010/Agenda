@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <ol class="breadcrumb panel-heading">
-                    <li class="active">Categorias</li>
+                    <li class="active">CATEGORIAS</li>
                 </ol>
                 <div class="form-group" style="float: right;">
                     <p><a href="{{route('categoria.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Adicionar</a></p>

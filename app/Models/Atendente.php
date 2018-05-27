@@ -7,7 +7,7 @@ class Atendente extends Model
 {
     protected $table = 'atendente';
 
-    protected $fillable = ['perfil', 'cargo', 'matricula', 'setor', 'local', 'user_id'];
+    protected $fillable = ['perfil', 'cargo', 'matricula', 'setor', 'local', 'user_id','hospital'];
 
     public function user() {
         return $this->belongsTo('App\User');

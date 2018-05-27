@@ -5,8 +5,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">Atendentes</h4>
-                    <p class="category">Listagem de atendentes</p>
+                    <h4 class="title">ATENDENTES</h4>
+                    <p class="category">LISTAGEM DE ATENDENTES</p>
                 </div>
                 <div class="form-group" style="float: right;">
                     <p><a href="{{route('atendente.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Adicionar</a></p>

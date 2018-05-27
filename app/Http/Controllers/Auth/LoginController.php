@@ -50,9 +50,9 @@ class LoginController extends Controller
         if($user->hasRole('atendente')){
             return redirect('/home');
         } else if($user->hasRole('especialista')){
-            return redirect('/especialista');
+            return redirect('/atendimento');
         } else if($user->hasRole('paciente')){
-            return redirect('/paciente');
+            return redirect('/atendimento');
         }
     }
 }

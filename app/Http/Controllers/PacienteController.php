@@ -7,6 +7,7 @@ use App\Models\Atendimento;
 use App\User;
 use App\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PacienteController extends Controller
 {
@@ -99,7 +100,11 @@ class PacienteController extends Controller
     public function edit($id)
     {
 
-        $paciente = Paciente::find($id);
+        $paciente = DB::table('paciente')
+        ->join('users', 'paciente.user_id', '=', 'users.id')
+        ->select('paciente.*', 'users.email','users.password')
+        ->where('paciente.id', '=', $id)
+        ->first();
 
         if(!$paciente){
             return redirect()->route('paciente.index');

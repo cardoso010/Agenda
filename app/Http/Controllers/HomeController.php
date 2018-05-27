@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Paciente;
+use App\Models\Atendimento;
 
 class HomeController extends Controller
 {
@@ -27,7 +28,8 @@ class HomeController extends Controller
         $request->user()->authorizeRoles(['atendente', 'especialista', 'paciente']);
 
         $pacientes = Paciente::paginate(999);
-	   	return view('home', compact('pacientes'));
+        $atendimentos = Atendimento::paginate(999);
+	   	return view('home', compact('pacientes','atendimentos'));
     }
 
     public function atendente(Request $request)

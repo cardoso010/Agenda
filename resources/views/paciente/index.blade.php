@@ -8,10 +8,11 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">Pacientes</h4>
-                    <p class="category">Listagem de pacientes</p>
+                    <h4 class="title">PACIENTES</h4>
+                    <p class="category">LISTAGEM DE PACIENTES</p>
                 </div>
-
+            
+                @if (!Auth::user()->hasRole('paciente'))
                 <br>
                 <div class="form-group">
                     <div clas="row" style="display : flex; align-items : center;">
@@ -26,6 +27,8 @@
                         </div>
                     </div>
                 </div>
+                @endif
+
                 <div class="content table-responsive table-full-width">
                     <table class="table table-hover table-striped">
                         <thead>

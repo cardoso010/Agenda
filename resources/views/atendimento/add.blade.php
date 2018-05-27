@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
             	<ol class="breadcrumb panel-heading">
-                	<li><a href="{{route('paciente.index')}}">Atendimentos</a></li>
+                	<li><a href="{{route('paciente.index')}}">ATENDIMENTOS</a></li>
                 	<li class="active">Adicionar</li>
                 </ol>
                 <div class="panel-body">
@@ -18,6 +18,21 @@
 						<div class="form-group">
 						  	<label for="descricao">Descrição</label>
 							<textarea class="form-control" rows="5" name="descricao" id="descricao"></textarea>
+						</div>
+						<div class="form-group">
+							<label for="setor">Hospital</label>
+							<select name="prioridade" class="form-control" id="prioridade">
+								<option value="upda_1">Upda_1</option>
+								<option value="upda_2">Upda_2</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="setor">Prioridade</label>
+							<select name="prioridade" class="form-control" id="prioridade">
+								<option value="Prioritário">Prioritário</option>
+								<option value="Moderado">Moderado</option>
+								<option value="Normal">Normal</option>
+							</select>
 						</div>
 						<div class="form-group">
 						  	<label for="status">Ativo</label>
@@ -62,7 +77,7 @@
                             <label for="especialista_id">Especialista</label>
                             <select name="especialista_id" class="form-control selectpicker" data-live-search="true" title="Especialista">
                                 @foreach($especialistas as $especialista)
-                                <option value="{{ $especialista->id }}">{{ $especialista->crm_mat }}</option>
+                                <option value="{{ $especialista->id }}">{{ $especialista->user->name }}</option>
                                 @endforeach()
                             </select>
                         </div>

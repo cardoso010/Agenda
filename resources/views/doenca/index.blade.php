@@ -5,7 +5,7 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <ol class="breadcrumb panel-heading">
-                <li class="active">Doenças</li>
+                <li class="active">DOENÇAS</li>
             </ol>
             <div class="panel-body">
                 <form class="form-inline" action="{{ route('doenca.search') }}" method="POST">

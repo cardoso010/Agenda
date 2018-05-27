@@ -10,6 +10,8 @@ use App\Models\Setor;
 use App\User;
 use App\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AtendimentoController extends Controller
 {
@@ -26,7 +28,36 @@ class AtendimentoController extends Controller
      */
     public function index(Request $request)
     {
-        $atendimentos = Atendimento::paginate(10);
+
+
+        $atendimentos = DB::table('atendimento')
+        ->join('especialista', 'atendimento.especialista_id', '=', 'especialista.id')
+        ->join('users', 'users.id', '=', 'especialista.user_id')
+        ->select('atendimento.*', 'users.name')
+        ->get();
+
+        if(Auth::user()->hasRole('paciente')){
+            $paciente = DB::table('paciente')->where('user_id', '=', Auth::user()->id)->first();
+            if($paciente){
+                $atendimentos = DB::table('atendimento')
+                ->join('especialista', 'atendimento.especialista_id', '=', 'especialista.id')
+                ->join('users', 'users.id', '=', 'especialista.user_id')
+                ->select('atendimento.*', 'users.name')
+                ->where('paciente_id', '=', $paciente->id)->get();
+            }
+        }
+
+        if(Auth::user()->hasRole('especialista')){
+            $especialista = DB::table('especialista')->where('user_id', '=', Auth::user()->id)->first();
+            if($especialista){
+                $atendimentos = DB::table('atendimento')
+                ->join('especialista', 'atendimento.especialista_id', '=', 'especialista.id')
+                ->join('users', 'users.id', '=', 'especialista.user_id')
+                ->select('atendimento.*', 'users.name')
+                ->where('especialista_id', '=', $especialista->id)->get();
+            }
+        }
+
 	   	return view('atendimento.index', compact('atendimentos'));
     }
 
@@ -35,7 +66,7 @@ class AtendimentoController extends Controller
         $servicos = Servico::get();
         $pacientes = Paciente::get();
         $setores = Setor::get();
-        $especialistas = Especialista::get();
+        $especialistas = Especialista::with('user')->get();
 
     	return view('atendimento.add', compact('servicos', 'pacientes', 'setores', 'especialistas'));
     }
@@ -58,7 +89,8 @@ class AtendimentoController extends Controller
             'setor_id' => $request->input('setor_id'),
             'especialista_id' => $request->input('especialista_id'),
             'tipo_chamado' => $request->input('tipo_chamado'),
-            'servico_id' => $request->input('servico_id')
+            'servico_id' => $request->input('servico_id'),
+            'prioridade' => $request->input('prioridade')
         ]);
 
     	return redirect()->route('atendimento.index');	
@@ -72,8 +104,7 @@ class AtendimentoController extends Controller
      */
     public function edit($id)
     {
-        $atendimento = Atendimento::find($id);
-        
+        $atendimento = Atendimento::find($id);        
         if(!empty($atendimento)){
             $servicos = Servico::pluck('nome', 'id');
             $pacientes = Paciente::pluck('nome', 'id');
@@ -111,7 +142,9 @@ class AtendimentoController extends Controller
                 'setor_id' => $request->input('setor_id'),
                 'especialista_id' => $request->input('especialista_id'),
                 'tipo_chamado' => $request->input('tipo_chamado'),
-                'servico_id' => $request->input('servico_id')
+                'servico_id' => $request->input('servico_id'),
+                'prioridade' => $request->input('prioridade')
+                
             ]);
             
         }

@@ -5,13 +5,21 @@
         <div class="col-md-12">
             <div class="panel panel-default">
             	<ol class="breadcrumb panel-heading">
-                	<li><a href="{{route('atendimento.index')}}">Atendimentos</a></li>
+                	<li><a href="{{route('atendimento.index')}}">ATENDIMENTO</a></li>
                 	<li class="active">Editar</li>
                 </ol>
                 <div class="panel-body">
 	                <form action="{{ route('atendimento.update', $atendimento->id) }}" method="POST" enctype="multipart/form-data">
 	                	{{ csrf_field() }}
 						<input type="hidden" name="_method" value="put">
+						<div class="form-group">
+							<label for="setor">Prioridade</label>
+							<select name="prioridade" class="form-control" id="prioridade" value="{{ $atendimento->prioridade }}">
+								<option value="Prioritário" {{ $atendimento->prioridade == 'Prioritário' ? 'selected' : '' }}>Prioritário</option>
+								<option value="Moderado" {{ $atendimento->prioridade == 'Moderado' ? 'selected' : '' }}> Moderado</option>
+								<option value="Normal" {{ $atendimento->prioridade == 'Normal' ? 'selected' : '' }}> Normal</option>
+							</select>
+						</div>
 						<div class="form-group">
 						  	<label for="resumo">Resumo</label>
 							<textarea class="form-control" rows="5" name="resumo" id="resumo">{{ $atendimento->resumo }}</textarea>
@@ -57,7 +65,10 @@
 							{!! Form::select('servico_id', $servicos, $atendimento->servico_id, ['class' => 'form-control selectpicker']) !!}
                         </div>
                         <br />
-						<button type="submit" class="btn btn-primary">Salvar</button>
+						@if (!Auth::user()->hasRole('paciente'))
+							<button type="submit" class="btn btn-primary">Salvar</button>
+						@endif
+							<a href="/atendimento" class="btn btn-danger">Cancelar</a>
 	                </form>
                 </div>
             </div>
