@@ -47,12 +47,14 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        if($user->hasRole('atendente')){
+        if($user->hasRole('atendente') && $user->role != 0){
             return redirect('/home');
-        } else if($user->hasRole('especialista')){
+        } else if($user->hasRole('especialista')  && $user->role != 0){
             return redirect('/atendimento');
-        } else if($user->hasRole('paciente')){
+        } else if($user->hasRole('paciente')  && $user->role != 0){
             return redirect('/atendimento');
+        }else{
+            return redirect('/atendente');
         }
     }
 }
