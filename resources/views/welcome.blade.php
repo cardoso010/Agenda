@@ -21,6 +21,8 @@
                                         <a href="{{ route('login') }}">Login</a>
                                         <!--<a href="{{ route('register') }}">Cadastrar</a> -->
                                     @endauth
+                                    <hr>
+                                    <a href="{{ route('register') }}">Cadastra</a>
                                 </div>
                             @endif
                         </div>
