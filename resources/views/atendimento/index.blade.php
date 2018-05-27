@@ -8,7 +8,7 @@
                     <h4 class="title">ATENDIMENTOS</h4>
                     <p class="category">LISTAGEM DE ATENDIMENTOS</p>
                 </div>
-                @if (!Auth::user()->hasRole('paciente'))
+                @if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0))
                 <div class="form-group" style="float: right;">
                     <p><a href="{{route('atendimento.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Adicionar</a></p>
                 </div>
