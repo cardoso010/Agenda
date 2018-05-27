@@ -7,6 +7,7 @@ use App\Models\Atendimento;
 use App\User;
 use App\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AtendenteController extends Controller
 {
@@ -92,7 +93,11 @@ class AtendenteController extends Controller
     public function edit($id)
     {
 
-        $atendente = Atendente::find($id);
+        $atendente = DB::table('atendente')
+        ->join('users', 'atendente.user_id', '=', 'users.id')
+        ->select('atendente.*', 'users.email','users.password','users.name')
+        ->where('atendente.id', '=', $id)
+        ->first();
 
         if(!$atendente){
             return redirect()->route('atendente.index');
