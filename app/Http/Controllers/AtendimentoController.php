@@ -58,7 +58,27 @@ class AtendimentoController extends Controller
             }
         }
 
-	   	return view('atendimento.index', compact('atendimentos'));
+        
+        //Prioridade
+        $normal = $atendimentos->filter(function($atendimento){return $atendimento->prioridade == 'Normal';});
+        $prioritario = $atendimentos->filter(function($atendimento){return $atendimento->prioridade == 'Prioritário';});
+        $moderado = $atendimentos->filter(function($atendimento){return $atendimento->prioridade == 'Moderado';});
+
+        $atendimentos = $prioritario->merge($moderado)->merge($normal);
+        $pacientes = Paciente::paginate(999);
+
+        $atendimentos = $atendimentos->map(function($atendimento) use ($pacientes){
+
+            $atendimento->paciente = DB::table('paciente')
+            ->join('users', 'paciente.user_id', '=', 'users.id')
+            ->select('paciente.*', 'users.email','users.password')
+            ->where('paciente.id', '=', $atendimento->paciente_id)
+            ->first();
+
+            return $atendimento;
+        });
+
+	   	return view('atendimento.index', compact('atendimentos','pacientes'));
     }
 
     public function create()
@@ -78,11 +98,12 @@ class AtendimentoController extends Controller
      */
     public function store(Request $request)
     {
+
         $atendimento = Atendimento::create([
             'resumo' => $request->input('resumo'),
             'descricao' => $request->input('descricao'),
             'status' => $request->input('status'),
-            'data_solucao' => $request->input('data_solucao'),
+            'data_solucao' => '1999-01-01 00:00:00',
             'data_fechamento' => $request->input('data_fechamento'),
             'acao' => $request->input('acao'),
             'paciente_id' => $request->input('paciente_id'),
@@ -90,7 +111,8 @@ class AtendimentoController extends Controller
             'especialista_id' => $request->input('especialista_id'),
             'tipo_chamado' => $request->input('tipo_chamado'),
             'servico_id' => $request->input('servico_id'),
-            'prioridade' => $request->input('prioridade')
+            'prioridade' => $request->input('prioridade'),
+            'hospital' => $request->input('hospital')
         ]);
 
     	return redirect()->route('atendimento.index');	
@@ -143,7 +165,8 @@ class AtendimentoController extends Controller
                 'especialista_id' => $request->input('especialista_id'),
                 'tipo_chamado' => $request->input('tipo_chamado'),
                 'servico_id' => $request->input('servico_id'),
-                'prioridade' => $request->input('prioridade')
+                'prioridade' => $request->input('prioridade'),
+                'hospital' => $request->input('hospital')
                 
             ]);
             

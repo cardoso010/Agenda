@@ -55,25 +55,48 @@ validarCPF = (cpf) =>{
 }
 
 
-
-
 $('.busca-cpf').on('blur', () =>{
     let cpf = $('#cpf').val();
     
-    if(cpf.length != 14){
+    if(cpf.length != 14 && validarCPF(cpf)){
         alert("Digite um cpf valido")
-        return;
+        return false;
     };
-    
-    let paciente = pacientes.find(paciente => paciente.cpf === cpf);
-    if(!paciente){
-        document.location = `/paciente/create?cpf=${cpf}`;
-    }else{
-        let atendimento = atendimentos.find(atendimento => atendimento.paciente_id === paciente.id);
-        if(atendimento){
-            document.location = `/atendimento/${atendimento.id}/edit`;
+
+    if(validarCPF(cpf)){
+        let paciente = pacientes.find(paciente => paciente.cpf === cpf);
+        if(!paciente){
+            document.location = `/paciente/create?cpf=${cpf}`;
         }else{
-            document.location = `/atendimento/create`;
+            let atendimento = atendimentos.find(atendimento => atendimento.paciente_id === paciente.id);
+            if(atendimento){
+                $('.modal').remove()
+                $('body').append(`
+                <div class="modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Paciente : ${paciente.nome.toUpperCase()}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Especialista : ${atendimento.name}</p>
+                                <p>Prioridade: ${atendimento.prioridade}</p>
+                                <p>Descrição: ${atendimento.descricao}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="/atendimento/${atendimento.id}/edit" class="btn btn-primary">Consultar Atendimento</a>
+                                <a href="/atendimento/create?paciente=${paciente.id}" class="btn btn-secondary">Novo Atendimento</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>`)
+                $('.modal').modal('toggle')
+            }else{
+                document.location = `/atendimento/create`;
+            }
         }
     }
 });

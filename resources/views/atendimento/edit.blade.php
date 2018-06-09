@@ -5,69 +5,117 @@
         <div class="col-md-12">
             <div class="panel panel-default">
             	<ol class="breadcrumb panel-heading">
-                	<li><a href="{{route('atendimento.index')}}">ATENDIMENTO</a></li>
+                	<li><a href="{{route('atendimento.index')}}">Editar atendimento</a></li>
                 	<li class="active">Editar</li>
                 </ol>
                 <div class="panel-body">
 	                <form action="{{ route('atendimento.update', $atendimento->id) }}" method="POST" enctype="multipart/form-data">
 	                	{{ csrf_field() }}
+
 						<input type="hidden" name="_method" value="put">
-						<div class="form-group">
-							<label for="setor">Prioridade</label>
-							<select name="prioridade" class="form-control" id="prioridade" value="{{ $atendimento->prioridade }}">
-								<option value="Prioritário" {{ $atendimento->prioridade == 'Prioritário' ? 'selected' : '' }}>Prioritário</option>
-								<option value="Moderado" {{ $atendimento->prioridade == 'Moderado' ? 'selected' : '' }}> Moderado</option>
-								<option value="Normal" {{ $atendimento->prioridade == 'Normal' ? 'selected' : '' }}> Normal</option>
-							</select>
+						<input type="hidden" name="resumo" value="1" id="resumo">
+						<input type="hidden" name="data_fechamento" id="data_fechamento" value="2018-01-01 00:00:00">
+						<input type="hidden" name="tipo_chamado" id="tipo_chamado" value="1">
+						<input type="hidden" name="acao" id="acao" value="1">
+						<input type="hidden" name="servico_id" id="servico_id" value="1">
+						
+						@if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0))
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="paciente_id">Paciente</label>
+									{!! Form::select('paciente_id', $pacientes, $atendimento->paciente_id, ['class' => 'form-control selectpicker']) !!}
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
-						  	<label for="resumo">Resumo</label>
-							<textarea class="form-control" rows="5" name="resumo" id="resumo">{{ $atendimento->resumo }}</textarea>
-						</div>
+						@endif
+
 						<div class="form-group">
 						  	<label for="descricao">Descrição</label>
-							<textarea class="form-control" rows="5" name="descricao" id="descricao">{{ $atendimento->descricao }}</textarea>
+							@if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0))
+								<textarea class="form-control" rows="5" name="descricao" id="descricao">{{ $atendimento->descricao }}</textarea>
+							@else
+								<textarea class="form-control" rows="5" name="descricao" id="descricao" disabled>{{ $atendimento->descricao }}</textarea>
+							@endif
 						</div>
-						<div class="form-group">
-						  	<label for="status">Ativo</label>
-							  {!! Form::select('status', array(true => 'Sim', false => 'Não'), $atendimento->status, ['class' => 'form-control selectpicker']) !!}
+
+
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="data_solucao">Data</label>
+									<input type=" {{ $atendimento->data_solucao ? 'datetime-local' : 'datetime' }}" {{ (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0)) ? '' : 'disabled' }} class="form-control" name="data_solucao" id="data_solucao" value="{{ $atendimento->data_solucao }}">
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="setor">Hospital</label>
+									<select name="hospital" class="form-control" id="hospital" {{ (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0)) ? '' : 'disabled' }}>
+										<option value="UPA Rocinha" {{ $atendimento->hospital == 'UPA Rocinha' ? 'selected' : '' }}> UPA Rocinha</option>
+										<option value=">UPA Cidade de Deus" {{ $atendimento->hospital == 'UPA Cidade de Deus' ? 'selected' : '' }}>UPA Cidade de Deus</option>
+										<option value="UPA Praca Seca" {{ $atendimento->hospital == 'UPA Praca Seca' ? 'selected' : '' }}>UPA Praca Seca</option>
+										<option value="UPA Praca Sec" {{ $atendimento->hospital == 'UPA Praca Sec' ? 'selected' : '' }}>UPA São Cristóvão</option>
+										<option value="Taquara" {{ $atendimento->hospital == 'Taquara' ? 'selected' : '' }}>Taquara</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="setor_id">Setor</label>
+									@if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0))
+										{!! Form::select('setor_id', $setores, $atendimento->setor_id, ['class' => 'form-control selectpicker']) !!}
+									@else
+										{!! Form::select('setor_id', $setores, $atendimento->setor_id, ['class' => 'form-control selectpicker', 'disabled' => 'true']) !!}
+									@endif
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="especialista_id">Especialista</label>
+									@if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0))
+										{!! Form::select('especialista_id', $especialistas, $atendimento->especialista_id, ['class' => 'form-control selectpicker']) !!}
+									@else
+										{!! Form::select('especialista_id', $especialistas, $atendimento->especialista_id, ['class' => 'form-control selectpicker', 'disabled' => true]) !!}
+									@endif
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
-						  	<label for="data_solucao">Data solução</label>
-						    <input type="datetime" class="form-control" name="data_solucao" id="data_solucao" value="{{ $atendimento->data_solucao }}">
+
+
+						<h4>Tipo Atendimento</h4>
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="setor">Prioridade</label>
+									<select name="prioridade" class="form-control" id="prioridade" value="{{ $atendimento->prioridade }}" {{ (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0)) ? '' : 'disabled' }}>
+										<option value="Prioritário" {{ $atendimento->prioridade == 'Prioritário' ? 'selected' : '' }}>Prioritário</option>
+										<option value="Moderado" {{ $atendimento->prioridade == 'Moderado' ? 'selected' : '' }}> Moderado</option>
+										<option value="Normal" {{ $atendimento->prioridade == 'Normal' ? 'selected' : '' }}> Normal</option>
+									</select>
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
-						  	<label for="data_fechamento">Data fechamento</label>
-						    <input type="datetime" class="form-control" name="data_fechamento" id="data_fechamento" value="{{ $atendimento->data_fechamento }}">
-						</div>
-						<div class="form-group">
-						  	<label for="acao">Ação</label>
-							<textarea class="form-control" rows="5" name="acao" id="acao">{{ $atendimento->acao }}</textarea>
-						</div>
-						<div class="form-group">
-						  	<label for="tipo_chamado">Tipo Chamado</label>
-						    <input type="text" class="form-control" name="tipo_chamado" id="tipo_chamado" value="{{ $atendimento->tipo_chamado }}">
-						</div>
-						<div class="form-group">
-                            <label for="paciente_id">Paciente</label>
-                            {!! Form::select('paciente_id', $pacientes, $atendimento->paciente_id, ['class' => 'form-control selectpicker']) !!}
-                        </div>
-						<div class="form-group">
-                            <label for="setor_id">Setor</label>
-                            {!! Form::select('setor_id', $setores, $atendimento->setor_id, ['class' => 'form-control selectpicker']) !!}
-                        </div>
-						<div class="form-group">
-                            <label for="especialista_id">Especialista</label>
-                            {!! Form::select('especialista_id', $especialistas, $atendimento->especialista_id, ['class' => 'form-control selectpicker']) !!}
-                        </div>
-						<div class="form-group">
-                            <label for="servico_id">Serviço</label>
-							{!! Form::select('servico_id', $servicos, $atendimento->servico_id, ['class' => 'form-control selectpicker']) !!}
-                        </div>
+						
+					
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="status">Ativo</label>
+									@if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0))
+										{!! Form::select('status', array(true => 'Sim', false => 'Não'), $atendimento->status, ['class' => 'form-control selectpicker']) !!}
+									@else
+										{!! Form::select('status', array(true => 'Sim', false => 'Não'), $atendimento->status, ['class' => 'form-control selectpicker', 'disabled' => true]) !!}
+									@endif
+								</div>
+							</div>
+						</div>	
+		
                         <br />
-						@if (!Auth::user()->hasRole('paciente'))
+
+						@if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0) )
 							<button type="submit" class="btn btn-primary">Salvar</button>
 						@endif
+						
 							<a href="/atendimento" class="btn btn-danger">Cancelar</a>
 	                </form>
                 </div>

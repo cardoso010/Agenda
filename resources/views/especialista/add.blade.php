@@ -5,7 +5,7 @@
 	<div class="col-md-12">
 		<div class="card" style="padding: 10px;">
 			<div class="card-header">
-				<h4 class="card-title">ESPECIALISTA</h4>
+				<h4 class="card-title">Cadastrar Especialista</h4>
 			</div>
 			<div class="card-body">
 				<form action="{{ route('especialista.store') }}" method="POST" enctype="multipart/form-data">

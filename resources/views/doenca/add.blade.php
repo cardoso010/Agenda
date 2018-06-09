@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
             	<ol class="breadcrumb panel-heading">
-                	<li><a href="{{route('doenca.index')}}">DOENÇAS</a></li>
+                	<li><a href="{{route('doenca.index')}}">Cadastrar Doença</a></li>
                 	<li class="active">Adicionar</li>
                 </ol>
                 <div class="panel-body">

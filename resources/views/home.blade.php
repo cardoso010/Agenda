@@ -15,7 +15,7 @@
                 </div>
             @endif
 
-            @if (!Auth::user()->hasRole('paciente'))
+            @if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0))
                 <div class="form-group">
                     <div clas="row" style="display : flex; align-items : center;">
                         <div class="col-md-4">

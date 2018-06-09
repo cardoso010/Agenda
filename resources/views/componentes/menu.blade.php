@@ -39,7 +39,7 @@
                 </a>
             </li>
             @endif
-            @if (Auth::user()->role == 0)
+            @if (Auth::user()->role == 3 || Auth::user()->role == 0)
             <li>
                 <a href="{{ route('doenca.index') }}">
                     <i class="pe-7s-science"></i>

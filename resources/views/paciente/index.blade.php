@@ -12,7 +12,7 @@
                     <p class="category">LISTAGEM DE PACIENTES</p>
                 </div>
             
-                @if (!Auth::user()->hasRole('paciente'))
+                @if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0) )
                 <br>
                 <div class="form-group">
                     <div clas="row" style="display : flex; align-items : center;">

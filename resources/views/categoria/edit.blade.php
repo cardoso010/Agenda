@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
             	<ol class="breadcrumb panel-heading">
-                	<li><a href="{{route('categoria.index')}}">CATEGORIAS</a></li>
+                	<li><a href="{{route('categoria.index')}}">Editar Categoria</a></li>
                 	<li class="active">Editar</li>
                 </ol>
                 <div class="panel-body">

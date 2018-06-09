@@ -9,7 +9,7 @@ class Atendimento extends Model
 
     protected $fillable = ['resumo', 'descricao', 'status', 'data_solucao', 
                         'data_fechamento', 'acao', 'paciente_id', 'setor_id', 
-                        'especialista_id', 'tipo_chamado', 'servico_id','prioridade'];
+                        'especialista_id', 'tipo_chamado', 'servico_id','prioridade','hospital'];
 
     public function paciente() {
         return $this->belongsTo('App\Models\Paciente');
