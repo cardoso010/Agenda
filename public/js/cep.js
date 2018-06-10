@@ -63,6 +63,7 @@ $('.busca-cpf').on('blur', () =>{
         return false;
     };
 
+    
     if(validarCPF(cpf)){
         let paciente = pacientes.find(paciente => paciente.cpf === cpf);
         if(!paciente){
