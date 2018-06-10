@@ -62,19 +62,19 @@
 
 .label-Moderado{
     font-weight: bolder;
-    color: #1050ea;
+    color: #dcea10;
     padding: 3px;
     border-radius: 5px;
 }
 .label-Normal{
     font-weight: bolder;
-    color: #ea6e10;
+    color: #16cb27;
     padding: 3px;
     border-radius: 5px;
 }
 .label-Prioritário{
     font-weight: bolder;
-    color: #16cb27;
+    color: #ea6e10;
     padding: 3px;
     border-radius: 5px;
 }
