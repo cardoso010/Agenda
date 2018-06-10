@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['atendente', 'especialista', 'paciente']);
+        //$request->user()->authorizeRoles(['atendente', 'especialista', 'paciente']);
 
         $pacientes = Paciente::paginate(999);
         $atendimentos = Atendimento::paginate(999);
