@@ -9,7 +9,7 @@
             <div class="main-panel default">
                 <div class="content">
                     <div class="container-fluid">
-                        <div class="row">
+                        <div class="row animated fadeInUp">
                             <img src="{{ asset('img/logo.jpeg') }}" alt="" width="15%" style="border-radius : 10%" />
                         </div>
                         <div class="flex-center position-ref full-height">
@@ -28,12 +28,6 @@
 
                                                     <div class="col-md-6">
                                                         <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                                        @if ($errors->has('email'))
-                                                            <span class="help-block">
-                                                                <strong>{{ $errors->first('email') }}</strong>
-                                                            </span>
-                                                        @endif
                                                     </div>
                                                 </div>
 
@@ -45,13 +39,13 @@
 
                                                         @if ($errors->has('password'))
                                                             <span class="help-block">
-                                                                <strong>{{ $errors->first('password') }}</strong>
+                                                                <strong>Senha ou Email incorretos</strong>
                                                             </span>
                                                         @endif
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
+                                                <!-- <div class="form-group">
                                                     <div class="col-md-6 col-md-offset-4">
                                                         <div class="checkbox">
                                                             <label>
@@ -59,7 +53,7 @@
                                                             </label>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
 
                                                 <div class="form-group">
                                                     <div class="col-md-8 col-md-offset-4">

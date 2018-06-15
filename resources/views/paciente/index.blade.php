@@ -3,6 +3,7 @@
 @section('content')
     <script>
         var pacientes = @json($pacientes).data;
+        var atendimentos = @json($atendimentos).data;
     </script>
     <div class="row">
         <div class="col-md-12">
@@ -23,7 +24,7 @@
 							</div>
                         </div>
                         <div class="col-md-8">
-                            <a href="{{route('paciente.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Adicionar</a>
+                            <a href="{{route('paciente.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Novo Paciente</a>
                         </div>
                     </div>
                 </div>
@@ -55,13 +56,16 @@
                                     <td class="text-center">
                                        <div class="row">
                                         <div class="col-md-6">
-                                            <a href="{{route('paciente.edit', $paciente->id)}}" class="btn btn-default btn-sm">Editar</a>
+                                            <a href="{{route('paciente.edit', $paciente->id)}}" class="btn btn-default btn-sm">Consultar</a>
                                         </div>
-                                        <div class="col-md-6">
-                                            {!! Form::open(['method' => 'DELETE', 'route' => ['paciente.destroy', $paciente->id]]) !!}
-                                                {!! Form::submit('Excluir', ['class' => 'btn btn-danger btn-sm']) !!}
-                                            {!! Form::close() !!}
-                                        </div>
+
+                                        @if ((Auth::user()->role == 0) )
+                                            <div class="col-md-6">
+                                                {!! Form::open(['method' => 'DELETE', 'route' => ['paciente.destroy', $paciente->id]]) !!}
+                                                    {!! Form::submit('Excluir', ['class' => 'btn btn-danger btn-sm']) !!}
+                                                {!! Form::close() !!}
+                                            </div>
+                                        @endif
                                        </div>
                                     </td>
                                 </tr>

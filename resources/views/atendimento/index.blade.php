@@ -12,21 +12,31 @@
                     <h4 class="title">ATENDIMENTOS</h4>
                 </div>
                 <br>
-                @if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0))
                 <div clas="row" style="display : flex; align-items : center;">
-                    <div class="col-md-4">
+                @if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0))
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="nome">Pesquisar paciente por cpf</label>
                             <input type="text" class="form-control busca-cpf" name="cpf" id="cpf" placeholder="Cpf">
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group" style="float: right;">
-                            <p><a href="{{route('atendimento.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Adicionar</a></p>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <p><a href="{{route('atendimento.create')}}" class="btn btn-info btn-sm">Novo Atendimento</a></p>
+                        </div>
+                    </div>
+                @endif
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <p><button id="buttonAbertos" class="btn btn-default btn-sm">Esconder Abertos</button></p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <p><button id="buttonFechados" class="btn btn-danger btn-sm"> Exibir Fechados</button></p>
                         </div>
                     </div>
                 </div>
-                @endif
                 <div class="content table-responsive table-full-width">
                     <table class="table table-hover table-striped">
                         <thead>
@@ -39,18 +49,17 @@
                         </thead>
                         <tbody>
                             @foreach($atendimentos as $atendimento)
-                                @if($atendimento->status == 1 || (Auth::user()->role == 0))
-                                <tr>
+                                <tr class="{{$atendimento->status == 1 ? 'atendimento-aberto' : 'atendimento-fechado'}}">
                                     <th scope="row" class="text-center">{{ $atendimento->id }}</th>
                                     <td> <span class='label-{{ $atendimento->prioridade }}'>{{ $atendimento->prioridade }}</span></td>
                                     <td>{{ isset($atendimento->paciente) ? $atendimento->paciente->nome : '' }}</td>
                                     <td>{{ $atendimento->name }}</td>
-                                    <td>{{ $atendimento->status == 1 ? 'Aberto' : 'Fechado' }}</td>
+                                    <td> <span style="color : {{ $atendimento->status == 1 ? 'blue' : 'red' }}; font-weight: bolder;">{{ $atendimento->status == 1 ? 'Aberto' : 'Fechado' }}</span></td>
                                     <td width="155" class="text-center">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <a href="{{route('atendimento.edit', $atendimento->id)}}" class="btn btn-default">
-                                                    @if (!Auth::user()->hasRole('paciente'))
+                                                    @if (Auth::user()->hasRole('especialista'))
                                                         Atender
                                                     @else
                                                         Ver
@@ -67,7 +76,6 @@
                                         </div>
                                     </td>
                                 </tr>
-                                @endif
                             @endforeach
                         </tbody>
                     </table>
@@ -75,4 +83,25 @@
             </div>
         </div>
     </div>
+    <script>
+
+        $("#buttonAbertos").click(()=>{
+            $(".atendimento-aberto").toggle();
+            if((this.tog1 = !this.tog1)){
+                $("#buttonAbertos").text('Exibir Abertos')
+            }else{
+                $("#buttonAbertos").text('Esconder Abertos')
+            }
+        });
+
+        $("#buttonFechados").click(()=>{
+            $(".atendimento-fechado").toggle();
+            if((this.tog2 = !this.tog2)){
+                $("#buttonFechados").text('Esconder Fechados')
+            }else{
+                $("#buttonFechados").text('Exibir Fechados')
+            }
+        });
+    
+    </script>
 @endsection

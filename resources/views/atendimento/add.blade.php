@@ -12,7 +12,6 @@
 	                <form action="{{ route('atendimento.store') }}" method="POST" enctype="multipart/form-data">
 	                	{{ csrf_field() }}
 
-						<input type="hidden" name="resumo" value="1" id="resumo">
 						<input type="hidden" name="data_fechamento" id="data_fechamento" value="2018-01-01 00:00:00">
 						<input type="hidden" name="tipo_chamado" id="tipo_chamado" value="1">
 						<input type="hidden" name="acao" id="acao" value="1">
@@ -32,6 +31,10 @@
 							</div>
 						</div>
 
+						<div class="form-group">
+							<label for="prontuario">Prontuario</label>
+							<textarea class="form-control" rows="5" name="resumo" id="resumo" placeholder="resumo"></textarea>
+						</div>
 
 						<div class="form-group">
 						  	<label for="descricao">Descrição</label>
@@ -84,9 +87,9 @@
 								<div class="form-group">
 									<label for="setor">Prioridade</label>
 									<select name="prioridade" class="form-control" id="prioridade">
-										<option value="Prioritário">Prioritário</option>
-										<option value="Moderado">Moderado</option>
 										<option value="Normal">Normal</option>
+										<option value="Moderado">Moderado</option>
+										<option value="Prioritário">Prioritário</option>
 									</select>
 								</div>
 							</div>
@@ -112,5 +115,9 @@
                 </div>
             </div>
         </div>
-    </div>
+	</div>
+	<script>
+		CKEDITOR.replace('resumo');
+		CKEDITOR.replace('descricao');
+	</script>
 @endsection

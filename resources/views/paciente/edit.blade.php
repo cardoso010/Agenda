@@ -12,6 +12,8 @@
 	                <form action="{{ route('paciente.update', $paciente->id) }}" method="POST" enctype="multipart/form-data">
 	                	{{ csrf_field() }}
 						<input type="hidden" name="_method" value="put">
+						<input type="hidden" name="prontuario" id="prontuario" value="prontuario">
+						
 						<div class="row">
 
 						<div class="col-md-6 ">
@@ -32,22 +34,28 @@
 
 					<div class="row">
 
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<div class="form-group">
 								<label for="endereco">CEP</label>
 								<input type="text" class="form-control" name="cep" id="cep" placeholder="CEP" value="{{ $paciente->cep }}">
 							</div>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<div class="form-group">
 								<label for="bairro">Bairro</label>
 								<input type="text" class="form-control" name="bairro" id="bairro" placeholder="Bairro" value="{{ $paciente->bairro }}">
 							</div>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<div class="form-group">
 								<label for="endereco">Endereço</label>
 								<input type="text" class="form-control" name="endereco" id="endereco" placeholder="Endereço" value="{{ $paciente->endereco }}">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="uf">Complemento</label>
+								<input type="text" class="form-control" name="complemento" id="complemento" placeholder="Complemento" value="{{ $paciente->complemento }}">
 							</div>
 						</div>
 
@@ -67,13 +75,7 @@
 									<input type="text" class="form-control" name="uf" id="uf" placeholder="UF" value="{{ $paciente->uf }}">
 								</div>
 							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label for="uf">Complemento</label>
-									<input type="text" class="form-control" name="complemento" id="complemento" placeholder="Complemento" value="{{ $paciente->complemento }}">
-								</div>
-							</div>
-
+							
 						</div>
 
 					<div class="row">
@@ -113,15 +115,6 @@
 							</div>
 						</div>
 					
-					</div>
-
-					<div class="row" style="opacity : {{ (Auth::user()->hasRole('atendente')) ? 0 : 1 }}">
-						<div class="col-md-12">
-							<div class="form-group">
-								<label for="email">Prontuatio</label>
-								<textarea class="form-control" name="prontuario" id="prontuario" placeholder="Prontuario" value="{{ $paciente->prontuario }}" > </textarea>
-							</div>
-						</div>
 					</div>
 
 					<div class="control-group" style="opacity: 0;">

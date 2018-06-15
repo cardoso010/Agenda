@@ -13,7 +13,6 @@
 	                	{{ csrf_field() }}
 
 						<input type="hidden" name="_method" value="put">
-						<input type="hidden" name="resumo" value="1" id="resumo">
 						<input type="hidden" name="data_fechamento" id="data_fechamento" value="2018-01-01 00:00:00">
 						<input type="hidden" name="tipo_chamado" id="tipo_chamado" value="1">
 						<input type="hidden" name="acao" id="acao" value="1">
@@ -31,6 +30,15 @@
 						@endif
 
 						<div class="form-group">
+							<label for="prontuario">Prontuario</label>
+							@if (Auth::user()->hasRole('especialista') || (Auth::user()->role == 0))
+								<textarea class="form-control" rows="5" name="resumo" id="resumo">{{ $atendimento->resumo }}</textarea>
+							@else
+								<textarea class="form-control" rows="5" name="resumo" id="resumo" disabled>{{ $atendimento->resumo }}</textarea>
+							@endif
+						</div>
+
+						<div class="form-group">
 						  	<label for="descricao">Descrição</label>
 							@if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0))
 								<textarea class="form-control" rows="5" name="descricao" id="descricao">{{ $atendimento->descricao }}</textarea>
@@ -43,8 +51,8 @@
 						<div class="row">
 							<div class="col-md-3">
 								<div class="form-group">
-									<label for="data_solucao">Data</label>
-									<input type=" {{ $atendimento->data_solucao ? 'datetime-local' : 'datetime' }}" {{ (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0)) ? '' : 'disabled' }} class="form-control" name="data_solucao" id="data_solucao" value="{{ $atendimento->data_solucao }}">
+									<label for="data_solucao">Data de abertura</label>
+									<input type=" {{ $atendimento->data_solucao ? 'datetime-local' : 'text' }}" {{ $atendimento->data_solucao ? 'disabled' : '' }} class="form-control" name="data_solucao" id="data_solucao" value="{{ $atendimento->data_solucao }}">
 								</div>
 							</div>
 							<div class="col-md-3">
@@ -101,7 +109,7 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="status">Ativo</label>
-									@if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0))
+									@if (Auth::user()->hasRole('especialista') || (Auth::user()->role == 0))
 										{!! Form::select('status', array(true => 'Sim', false => 'Não'), $atendimento->status, ['class' => 'form-control selectpicker']) !!}
 									@else
 										{!! Form::select('status', array(true => 'Sim', false => 'Não'), $atendimento->status, ['class' => 'form-control selectpicker', 'disabled' => true]) !!}
@@ -122,4 +130,12 @@
             </div>
         </div>
     </div>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#data_solucao").val(formataData($("#data_solucao").val()))
+		});
+
+		CKEDITOR.replace('resumo');
+		CKEDITOR.replace('descricao');
+	</script>
 @endsection

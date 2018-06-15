@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-<head>@include('util.style')</head>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    @include('util.style')
+</head>
 <body>
     <div id="app">
          <div class="wrapper">

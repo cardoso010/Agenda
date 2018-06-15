@@ -83,7 +83,6 @@ $('.busca-cpf').on('blur', () =>{
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p>Especialista : ${atendimento.name}</p>
                                 <p>Prioridade: ${atendimento.prioridade}</p>
                                 <p>Descrição: ${atendimento.descricao}</p>
                             </div>

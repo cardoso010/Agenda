@@ -1,11 +1,10 @@
 <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
     <div class="sidebar-wrapper">
         <div class="logo">
-            <a href="#" class="simple-text">
+            <a href="/home" class="simple-text">
                 <img src="{{ asset('img/logo.jpeg') }}" alt="" width="90" style="border-radius : 10%" />
             </a>
         </div>
-
         <ul class="nav">
             @if (Auth::user()->role == 0)
             <li>

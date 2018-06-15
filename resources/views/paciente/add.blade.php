@@ -10,6 +10,9 @@
 			<div class="card-body">
 				<form action="{{ route('paciente.store') }}" method="POST" enctype="multipart/form-data">
 					{{ csrf_field() }}
+
+					<input type="hidden" name="prontuario" id="prontuario" value="prontuario">
+					
 					<div class="row">
 
 						<div class="col-md-6 ">
@@ -31,22 +34,28 @@
 
 					<div class="row">
 
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<div class="form-group">
 								<label for="cep">CEP</label>
 								<input type="text" class="form-control" name="cep" id="cep" placeholder="CEP">
 							</div>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<div class="form-group">
 								<label for="bairro">Bairro</label>
 								<input type="text" class="form-control" name="bairro" id="bairro" placeholder="Bairro">
 							</div>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<div class="form-group">
 								<label for="endereco">Endereço</label>
 								<input type="text" class="form-control" name="endereco" id="endereco" placeholder="Endereço">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="complemento">Complemento</label>
+								<input type="text" class="form-control" name="complemento" id="complemento" placeholder="Complemento">
 							</div>
 						</div>
 
@@ -66,13 +75,7 @@
 									<input type="text" class="form-control" name="uf" id="uf" placeholder="UF">
 								</div>
 							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label for="complemento">Complemento</label>
-									<input type="text" class="form-control" name="complemento" id="complemento" placeholder="Complemento">
-								</div>
-							</div>
-
+							
 					</div>
 
 					<div class="row">
@@ -120,19 +123,6 @@
 						</div>
 					</div>
 
-
-					<div class="row" style="opacity : {{ (Auth::user()->hasRole('atendente')) ? 0 : 1 }}">
-
-						<div class="col-md-12 pr-1">
-							<div class="form-group">
-								<label for="prontuario">Prontuario</label>
-								<textarea class="form-control" name="prontuario" id="prontuario" placeholder="Prontuario"></textarea>
-							</div>
-						</div>
-
-					</div>
-					
-					<br />
 					<button type="submit" class="btn btn-primary">Salvar</button>
 				</form>
 			</div>

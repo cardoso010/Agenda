@@ -9,7 +9,7 @@
                     <p class="category">LISTAGEM DE ATENDENTES</p>
                 </div>
                 <div class="form-group" style="float: right;">
-                    <p><a href="{{route('atendente.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Adicionar</a></p>
+                    <p><a href="{{route('atendente.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Novo Atendente</a></p>
                 </div>
                 <div class="content table-responsive table-full-width">
                     <table class="table table-hover table-striped">

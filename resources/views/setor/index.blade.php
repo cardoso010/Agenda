@@ -12,12 +12,8 @@
                     {{ csrf_field() }}
                     <input type="hidden" name="_method" value="put">
                     <div class="form-group" style="float: right;">
-                        <p><a href="{{route('setor.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Adicionar</a></p>
+                        <p><a href="{{route('setor.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Novo Setor</a></p>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
-                    </div>
-                    <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i> Buscar</button>
                 </form>
                 <br />
                 <table class="table table-bordered table-striped">

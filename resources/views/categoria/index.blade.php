@@ -8,7 +8,7 @@
                     <li class="active">CATEGORIAS</li>
                 </ol>
                 <div class="form-group" style="float: right;">
-                    <p><a href="{{route('categoria.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Adicionar</a></p>
+                    <p><a href="{{route('categoria.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Novo Categoria</a></p>
                 </div>
                 <div class="panel-body">
                     <table class="table table-bordered table-striped">

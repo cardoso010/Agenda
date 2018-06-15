@@ -103,8 +103,8 @@ class AtendimentoController extends Controller
             'resumo' => $request->input('resumo'),
             'descricao' => $request->input('descricao'),
             'status' => $request->input('status'),
-            'data_solucao' => '1999-01-01 00:00:00',
-            'data_fechamento' => $request->input('data_fechamento'),
+            'data_solucao' => date('Y-m-d H:i:s'),
+            'data_fechamento' => '1999-01-01 00:00:00',
             'acao' => $request->input('acao'),
             'paciente_id' => $request->input('paciente_id'),
             'setor_id' => $request->input('setor_id'),
@@ -114,7 +114,7 @@ class AtendimentoController extends Controller
             'prioridade' => $request->input('prioridade'),
             'hospital' => $request->input('hospital')
         ]);
-
+        
     	return redirect()->route('atendimento.index');	
     }
 
@@ -150,26 +150,8 @@ class AtendimentoController extends Controller
     public function update(Request $request, $id)
     {
         $atendimento = Atendimento::find($id);
-
         if(!empty($atendimento)){
-
-            $atendimento->update([
-                'resumo' => $request->input('resumo'),
-                'descricao' => $request->input('descricao'),
-                'status' => $request->input('status'),
-                'data_solucao' => $request->input('data_solucao'),
-                'data_fechamento' => $request->input('data_fechamento'),
-                'acao' => $request->input('acao'),
-                'paciente_id' => $request->input('paciente_id'),
-                'setor_id' => $request->input('setor_id'),
-                'especialista_id' => $request->input('especialista_id'),
-                'tipo_chamado' => $request->input('tipo_chamado'),
-                'servico_id' => $request->input('servico_id'),
-                'prioridade' => $request->input('prioridade'),
-                'hospital' => $request->input('hospital')
-                
-            ]);
-            
+            $atendimento->update($request->all());
         }
         return redirect()->route('atendimento.index');
     }
