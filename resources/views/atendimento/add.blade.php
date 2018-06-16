@@ -24,18 +24,19 @@
 									<label for="paciente_id">Paciente</label>
 									<select name="paciente_id" class="form-control selectpicker" data-live-search="true" title="Paciente">
 										@foreach($pacientes as $paciente)
-										<option value="{{ $paciente->id }}" {{ Request::get('paciente') && Request::get('paciente') == '3' ? 'selected' : ''}} >{{ $paciente->nome }}</option>
+										<option value="{{ $paciente->id }}" {{ Request::get('paciente') == $paciente->id ? 'selected' : ''}} >{{ $paciente->nome }}</option>
 										@endforeach()
 									</select>
                         		</div>
 							</div>
 						</div>
 
-						<div class="form-group">
-							<label for="prontuario">Prontuario</label>
-							<textarea class="form-control" rows="5" name="resumo" id="resumo" placeholder="resumo"></textarea>
-						</div>
-
+						@if (!Auth::user()->hasRole('atendente'))
+							<div class="form-group">
+								<label for="prontuario">Prontuario</label>
+								<textarea class="form-control" rows="5" name="resumo" id="resumo" placeholder="resumo"></textarea>
+							</div>
+						@endif
 						<div class="form-group">
 						  	<label for="descricao">Descrição</label>
 							<textarea class="form-control" rows="5" name="descricao" id="descricao"></textarea>

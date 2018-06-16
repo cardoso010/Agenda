@@ -100,7 +100,7 @@ class AtendimentoController extends Controller
     {
 
         $atendimento = Atendimento::create([
-            'resumo' => $request->input('resumo'),
+            'resumo' => " ",
             'descricao' => $request->input('descricao'),
             'status' => $request->input('status'),
             'data_solucao' => date('Y-m-d H:i:s'),
@@ -129,11 +129,9 @@ class AtendimentoController extends Controller
         $atendimento = Atendimento::find($id);        
         if(!empty($atendimento)){
             $servicos = Servico::pluck('nome', 'id');
-            $pacientes = Paciente::pluck('nome', 'id');
+            $pacientes = Paciente::paginate(999);
             $setores = Setor::pluck('nome', 'id');
             $especialistas = Especialista::with('user')->get()->pluck('user.name', 'id');
-
-
             return view('atendimento.edit', compact('atendimento', 'servicos', 'pacientes', 'setores', 'especialistas'));
         }
 
@@ -158,18 +156,14 @@ class AtendimentoController extends Controller
 
     public function atendimentos_paciente($id){
         $paciente =  Paciente::find($id);
-
         $atendimentos = Atendimento::where('paciente_id', $id)->get();
-
         return view('atendimento.atendimentos_paciente', compact('paciente', 'atendimentos'));
 
     }
 
     public function atendimentos_especialista($id){
         $especialista =  Especialista::find($id);
-
         $atendimentos = Atendimento::where('especialista_id', $id)->get();
-
         return view('atendimento.atendimentos_especialista', compact('especialista', 'atendimentos'));
 
     }

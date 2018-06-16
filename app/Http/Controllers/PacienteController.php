@@ -137,6 +137,7 @@ class PacienteController extends Controller
             'telefone' => $request->input('telefone'),
             'complemento' => $request->input('complemento')
         ];
+
         
         $result = Paciente::find($id)->update($update);
         

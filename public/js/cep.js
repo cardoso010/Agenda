@@ -87,7 +87,7 @@ $('.busca-cpf').on('blur', () =>{
                                 <p>Descrição: ${atendimento.descricao}</p>
                             </div>
                             <div class="modal-footer">
-                                <a href="/atendimento/${atendimento.id}/edit" class="btn btn-primary">Consultar Atendimento</a>
+                                <a href="/atendimento/${atendimento.id}/edit?paciente=${paciente.id}" class="btn btn-primary">Consultar Atendimento</a>
                                 <a href="/atendimento/create?paciente=${paciente.id}" class="btn btn-secondary">Novo Atendimento</a>
                             </div>
                         </div>
@@ -95,7 +95,7 @@ $('.busca-cpf').on('blur', () =>{
                 </div>`)
                 $('.modal').modal('toggle')
             }else{
-                document.location = `/atendimento/create`;
+                document.location = `/atendimento/create?paciente=${paciente.id}`;
             }
         }
     }

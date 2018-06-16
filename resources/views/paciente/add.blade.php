@@ -5,14 +5,12 @@
 	<div class="col-md-12">
 		<div class="card" style="padding: 10px;">
 			<div class="card-header">
-				<h4 class="card-title">Cadastrar Paciente</h4>
+				<h2 class="card-title">Cadastrar Paciente</h2>
 			</div>
 			<div class="card-body">
 				<form action="{{ route('paciente.store') }}" method="POST" enctype="multipart/form-data">
 					{{ csrf_field() }}
 
-					<input type="hidden" name="prontuario" id="prontuario" value="prontuario">
-					
 					<div class="row">
 
 						<div class="col-md-6 ">
@@ -34,7 +32,7 @@
 
 					<div class="row">
 
-						<div class="col-md-3">
+						<div class="col-md-2">
 							<div class="form-group">
 								<label for="cep">CEP</label>
 								<input type="text" class="form-control" name="cep" id="cep" placeholder="CEP">
@@ -52,6 +50,14 @@
 								<input type="text" class="form-control" name="endereco" id="endereco" placeholder="Endereço">
 							</div>
 						</div>
+						
+						<div class="col-md-1">
+							<div class="form-group">
+								<label for="prontuario">Numero</label>
+								<input type="number" class="form-control" name="prontuario" id="prontuario" placeholder="Numero">
+							</div>
+						</div>
+
 						<div class="col-md-3">
 							<div class="form-group">
 								<label for="complemento">Complemento</label>

@@ -20,11 +20,13 @@
                             <input type="text" class="form-control busca-cpf" name="cpf" id="cpf" placeholder="Cpf">
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <p><a href="{{route('atendimento.create')}}" class="btn btn-info btn-sm">Novo Atendimento</a></p>
+                    @if (Auth::user()->hasRole('atendente'))
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <p><a href="{{route('atendimento.create')}}" class="btn btn-info btn-sm">Novo Atendimento</a></p>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 @endif
                     <div class="col-md-3">
                         <div class="form-group">
@@ -33,7 +35,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <p><button id="buttonFechados" class="btn btn-danger btn-sm"> Exibir Fechados</button></p>
+                            <p><button id="buttonFechados" class="btn btn-danger btn-sm">Esconder Fechados</button></p>
                         </div>
                     </div>
                 </div>
@@ -88,9 +90,9 @@
         $("#buttonAbertos").click(()=>{
             $(".atendimento-aberto").toggle();
             if((this.tog1 = !this.tog1)){
-                $("#buttonAbertos").text('Exibir Abertos')
-            }else{
                 $("#buttonAbertos").text('Esconder Abertos')
+            }else{
+                $("#buttonAbertos").text('Exibir Abertos')
             }
         });
 

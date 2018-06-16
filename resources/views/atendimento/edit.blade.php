@@ -17,13 +17,19 @@
 						<input type="hidden" name="tipo_chamado" id="tipo_chamado" value="1">
 						<input type="hidden" name="acao" id="acao" value="1">
 						<input type="hidden" name="servico_id" id="servico_id" value="1">
-						
+
 						@if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0))
 						<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="paciente_id">Paciente</label>
-									{!! Form::select('paciente_id', $pacientes, $atendimento->paciente_id, ['class' => 'form-control selectpicker']) !!}
+									<!--{!! Form::select('paciente_id', $pacientes, $atendimento->paciente_id, ['class' => 'form-control selectpicker']) !!}-->
+
+									<select name="paciente_id" class="form-control selectpicker" data-live-search="true" {{ $atendimento->id ? 'disabled' : '' }} title="Paciente">
+										@foreach($pacientes as $paciente)
+										<option value="{{ $paciente->id }}" {{ Request::get('paciente') == $paciente->id ? 'selected' : ''}} >{{ $paciente->nome }}</option>
+										@endforeach()
+									</select>
 								</div>
 							</div>
 						</div>

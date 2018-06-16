@@ -34,7 +34,7 @@
 
 					<div class="row">
 
-						<div class="col-md-3">
+						<div class="col-md-2">
 							<div class="form-group">
 								<label for="endereco">CEP</label>
 								<input type="text" class="form-control" name="cep" id="cep" placeholder="CEP" value="{{ $paciente->cep }}">
@@ -52,6 +52,14 @@
 								<input type="text" class="form-control" name="endereco" id="endereco" placeholder="Endereço" value="{{ $paciente->endereco }}">
 							</div>
 						</div>
+
+						<div class="col-md-1">
+							<div class="form-group">
+								<label for="prontuario">Numero</label>
+								<input type="number" class="form-control" name="prontuario" id="prontuario" placeholder="Numero" value="{{ $paciente->prontuario }}">
+							</div>
+						</div>
+						
 						<div class="col-md-3">
 							<div class="form-group">
 								<label for="uf">Complemento</label>
