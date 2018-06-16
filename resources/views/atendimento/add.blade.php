@@ -15,7 +15,7 @@
 						<input type="hidden" name="data_fechamento" id="data_fechamento" value="2018-01-01 00:00:00">
 						<input type="hidden" name="tipo_chamado" id="tipo_chamado" value="1">
 						<input type="hidden" name="acao" id="acao" value="1">
-						<input type="hidden" name="servico_id" id="servico_id" value="1">
+						<input type="hidden" name="servico_id" id="servico_id" value="2">
 
 
 						<div class="row">
