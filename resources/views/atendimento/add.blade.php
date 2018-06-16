@@ -31,16 +31,17 @@
 							</div>
 						</div>
 
+						<div class="form-group">
+						  	<label for="descricao">Descrição</label>
+							<textarea class="form-control" rows="5" name="descricao" id="descricao"></textarea>
+						</div>
+
 						@if (Auth::user()->hasRole('medico'))
 							<div class="form-group">
 								<label for="prontuario">Prontuario</label>
 								<textarea class="form-control" rows="5" name="resumo" id="resumo" placeholder="resumo"></textarea>
 							</div>
 						@endif
-						<div class="form-group">
-						  	<label for="descricao">Descrição</label>
-							<textarea class="form-control" rows="5" name="descricao" id="descricao"></textarea>
-						</div>
 
 
 						<div class="row">
@@ -60,7 +61,7 @@
 
 							<div class="col-md-3">
 								<div class="form-group">
-									<label for="setor_id">Setor</label>
+									<label for="setor_id">Ambulatório</label>
 									<select name="setor_id" class="form-control selectpicker" data-live-search="true" title="Setor">
 										@foreach($setores as $setor)
 										<option value="{{ $setor->id }}">{{ $setor->nome }}</option>

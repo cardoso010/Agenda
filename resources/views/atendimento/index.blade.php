@@ -44,6 +44,7 @@
                         <thead>
                             <th>ID</th>
                             <th>Prioridade</th>
+                            <th>Data do atendimento</th>
                             <th>Paciente</th>
                             <th>Especialista</th>
                             <th>Status</th>
@@ -54,13 +55,21 @@
                                 <tr class="{{$atendimento->status == 1 ? 'atendimento-aberto' : 'atendimento-fechado'}}">
                                     <th scope="row" class="text-center">{{ $atendimento->id }}</th>
                                     <td> <span class='label-{{ $atendimento->prioridade }}'>{{ $atendimento->prioridade }}</span></td>
+                                    <td>
+                                        <input type="text" disabled class="data_solucao{{ $atendimento->id }}" style="border: none;" value="{{ $atendimento->data_solucao }}">
+                                        <script>
+                                            $(document).ready(function(){
+                                                $(".data_solucao{{ $atendimento->id }}").val(formataData($(".data_solucao{{ $atendimento->id }}").val()))
+                                            });
+                                        </script>
+                                    </td>
                                     <td>{{ isset($atendimento->paciente) ? $atendimento->paciente->nome : '' }}</td>
                                     <td>{{ $atendimento->name }}</td>
                                     <td> <span style="color : {{ $atendimento->status == 1 ? 'blue' : 'red' }}; font-weight: bolder;">{{ $atendimento->status == 1 ? 'Aberto' : 'Fechado' }}</span></td>
                                     <td width="155" class="text-center">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <a href="{{route('atendimento.edit', $atendimento->id)}}" class="btn btn-default">
+                                                <a href="{{route('atendimento.edit', $atendimento->id)}}?paciente={{ $atendimento->paciente_id }}" class="btn btn-default">
                                                     @if (Auth::user()->hasRole('especialista'))
                                                         Atender
                                                     @else
@@ -104,6 +113,5 @@
                 $("#buttonFechados").text('Exibir Fechados')
             }
         });
-    
-    </script>
+	</script>
 @endsection

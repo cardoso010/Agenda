@@ -35,15 +35,7 @@
 						</div>
 						@endif
 
-						<div class="form-group">
-							<label for="prontuario">Prontuario</label>
-							@if (Auth::user()->hasRole('especialista') || (Auth::user()->role == 0))
-								<textarea class="form-control" rows="5" name="resumo" id="resumo">{{ $atendimento->resumo }}</textarea>
-							@else
-								<textarea class="form-control" rows="5" name="resumo" id="resumo" disabled>{{ $atendimento->resumo }}</textarea>
-							@endif
-						</div>
-
+						
 						<div class="form-group">
 						  	<label for="descricao">Descrição</label>
 							@if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0))
@@ -53,11 +45,20 @@
 							@endif
 						</div>
 
+						<div class="form-group">
+							<label for="prontuario">Prontuario</label>
+							@if (Auth::user()->hasRole('especialista') || (Auth::user()->role == 0))
+								<textarea class="form-control" rows="5" name="resumo" id="resumo">{{ $atendimento->resumo }}</textarea>
+							@else
+								<textarea class="form-control" rows="5" name="resumo" id="resumo" disabled>{{ $atendimento->resumo }}</textarea>
+							@endif
+						</div>
+
 
 						<div class="row">
 							<div class="col-md-3">
 								<div class="form-group">
-									<label for="data_solucao">Data de abertura</label>
+									<label for="data_solucao">Data do Atendimento</label>
 									<input type=" {{ $atendimento->data_solucao ? 'datetime-local' : 'text' }}" {{ $atendimento->data_solucao ? 'disabled' : '' }} class="form-control" name="data_solucao" id="data_solucao" value="{{ $atendimento->data_solucao }}">
 								</div>
 							</div>
@@ -75,7 +76,7 @@
 							</div>
 							<div class="col-md-3">
 								<div class="form-group">
-									<label for="setor_id">Setor</label>
+									<label for="setor_id">Ambulatório</label>
 									@if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0))
 										{!! Form::select('setor_id', $setores, $atendimento->setor_id, ['class' => 'form-control selectpicker']) !!}
 									@else
@@ -130,7 +131,7 @@
 							<button type="submit" class="btn btn-primary">Salvar</button>
 						@endif
 						
-							<a href="/atendimento" class="btn btn-danger">Cancelar</a>
+							<a href="/atendimento" class="btn btn-danger">Voltar</a>
 	                </form>
                 </div>
             </div>
