@@ -20,7 +20,7 @@
                             <input type="text" class="form-control busca-cpf" name="cpf" id="cpf" placeholder="Cpf">
                         </div>
                     </div>
-                    @if (Auth::user()->hasRole('atendente'))
+                    @if (Auth::user()->hasRole('atendente') || (Auth::user()->role == 0))
                         <div class="col-md-3">
                             <div class="form-group">
                                 <p><a href="{{route('atendimento.create')}}" class="btn btn-info btn-sm">Novo Atendimento</a></p>
