@@ -31,7 +31,7 @@
 							</div>
 						</div>
 
-						@if (!Auth::user()->hasRole('atendente'))
+						@if (Auth::user()->hasRole('medico'))
 							<div class="form-group">
 								<label for="prontuario">Prontuario</label>
 								<textarea class="form-control" rows="5" name="resumo" id="resumo" placeholder="resumo"></textarea>

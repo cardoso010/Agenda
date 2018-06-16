@@ -100,7 +100,7 @@ class AtendimentoController extends Controller
     {
 
         $atendimento = Atendimento::create([
-            'resumo' => " ",
+            'resumo' => $request->input('resumo') ? $request->input('descricao') : " ",
             'descricao' => $request->input('descricao'),
             'status' => $request->input('status'),
             'data_solucao' => date('Y-m-d H:i:s'),
