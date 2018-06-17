@@ -23,7 +23,6 @@
                         </thead>
                         <tbody>
                             @foreach($atendentes as $atendente)
-                            
                                 <tr>
                                     <th scope="row" class="text-center">{{ $atendente->id }}</th>
                                     <td>{{ $atendente->user->name }}</td>
