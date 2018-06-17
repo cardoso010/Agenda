@@ -69,25 +69,35 @@ $('.busca-cpf').on('blur', () =>{
         if(!paciente){
             document.location = `/paciente/create?cpf=${cpf}`;
         }else{
-            let atendimento = atendimentos.find(atendimento => atendimento.paciente_id === paciente.id);
+            let atendimento = atendimentos.filter(atendimento => atendimento.paciente_id === paciente.id);
             if(atendimento){
+
+                console.log(atendimento)
+
                 $('.modal').remove()
                 $('body').append(`
                 <div class="modal" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Paciente : ${paciente.nome.toUpperCase()}</h5>
+                                <h3 class="modal-title">Paciente : ${paciente.nome.toUpperCase()}</h3>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p>Prioridade: ${atendimento.prioridade}</p>
-                                <p>Descrição: ${atendimento.descricao}</p>
+                                <ul>
+                                ${atendimento.map((atendimento) =>`
+                                <li>
+                                    <h4 style="margin:3px 0px;line-height: 18px;">ID atendimento : ${atendimento.id}</h4>
+                                    <h4 style="margin:3px 0px;line-height: 18px;">Especialista : ${atendimento.name}</h4>
+                                    <a href="/atendimento/${atendimento.id}/edit?paciente=${paciente.id}" class="btn btn-primary btn-sm">Consultar Atendimento</a>
+                                    <hr/>
+                                </li>
+                                `).join('')}
+                                </ul>
                             </div>
                             <div class="modal-footer">
-                                <a href="/atendimento/${atendimento.id}/edit?paciente=${paciente.id}" class="btn btn-primary">Consultar Atendimento</a>
                                 <a href="/atendimento/create?paciente=${paciente.id}" class="btn btn-secondary">Novo Atendimento</a>
                             </div>
                         </div>
