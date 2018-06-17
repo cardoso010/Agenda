@@ -99,18 +99,18 @@
         $("#buttonAbertos").click(()=>{
             $(".atendimento-aberto").toggle();
             if((this.tog1 = !this.tog1)){
-                $("#buttonAbertos").text('Esconder Abertos')
-            }else{
                 $("#buttonAbertos").text('Exibir Abertos')
+            }else{
+                $("#buttonAbertos").text('Esconder Abertos')
             }
         });
 
         $("#buttonFechados").click(()=>{
             $(".atendimento-fechado").toggle();
             if((this.tog2 = !this.tog2)){
-                $("#buttonFechados").text('Esconder Fechados')
-            }else{
                 $("#buttonFechados").text('Exibir Fechados')
+            }else{
+                $("#buttonFechados").text('Esconder Fechados')
             }
         });
 	</script>
