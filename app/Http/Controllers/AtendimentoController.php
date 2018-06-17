@@ -84,7 +84,7 @@ class AtendimentoController extends Controller
     {
         $servicos = Servico::get();
         $pacientes = Paciente::get();
-        $setores = Setor::get();
+        $setores = Setor::orderBy('nome')->get();
         $especialistas = Especialista::with('user')->get();
 
     	return view('atendimento.add', compact('servicos', 'pacientes', 'setores', 'especialistas'));

@@ -12,7 +12,6 @@
 	                <form action="{{ route('paciente.update', $paciente->id) }}" method="POST" enctype="multipart/form-data">
 	                	{{ csrf_field() }}
 						<input type="hidden" name="_method" value="put">
-						<input type="hidden" name="prontuario" id="prontuario" value="prontuario">
 						
 						<div class="row">
 
@@ -81,6 +80,19 @@
 								<div class="form-group">
 									<label for="uf">UF</label>
 									<input type="text" class="form-control" name="uf" id="uf" placeholder="UF" value="{{ $paciente->uf }}">
+								</div>
+							</div>
+
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="hospital">Hospital de cadastro</label>
+									<select name="hospital" class="form-control" id="hospital" {{ (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0)) ? '' : 'disabled' }}>
+										<option value="UPA Rocinha" {{ $paciente->hospital == 'UPA Rocinha' ? 'selected' : '' }}> UPA Rocinha</option>
+										<option value="UPA Cidade de Deus" {{ $paciente->hospital == 'UPA Cidade de Deus' ? 'selected' : '' }}>UPA Cidade de Deus</option>
+										<option value="UPA Praca Seca" {{ $paciente->hospital == 'UPA Praca Seca' ? 'selected' : '' }}>UPA Praca Seca</option>
+										<option value="UPA Praca Sec" {{ $paciente->hospital == 'UPA Praca Sec' ? 'selected' : '' }}>UPA São Cristóvão</option>
+										<option value="UPA Taquara" {{ $paciente->hospital == 'UPA Taquara' ? 'selected' : '' }}>UPA Taquara</option>
+									</select>
 								</div>
 							</div>
 							

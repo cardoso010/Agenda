@@ -72,8 +72,6 @@ $('.busca-cpf').on('blur', () =>{
             let atendimento = atendimentos.filter(atendimento => atendimento.paciente_id === paciente.id);
             if(atendimento){
 
-                console.log(atendimento)
-
                 $('.modal').remove()
                 $('body').append(`
                 <div class="modal" tabindex="-1" role="dialog">
@@ -90,7 +88,10 @@ $('.busca-cpf').on('blur', () =>{
                                 ${atendimento.map((atendimento) =>`
                                 <li>
                                     <h4 style="margin:3px 0px;line-height: 18px;">ID atendimento : ${atendimento.id}</h4>
-                                    <h4 style="margin:3px 0px;line-height: 18px;">Especialista : ${atendimento.name}</h4>
+                                    <h4 style="margin:3px 0px;line-height: 18px;">Hospital : ${atendimento.hospital}</h4>
+                                    <h4 style="margin:3px 0px;line-height: 18px;">Data atendimento : ${
+                                        new Date(atendimento.data_solucao).toLocaleString() 
+                                    }</h4>
                                     <a href="/atendimento/${atendimento.id}/edit?paciente=${paciente.id}" class="btn btn-primary btn-sm">Consultar Atendimento</a>
                                     <hr/>
                                 </li>

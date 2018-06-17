@@ -73,6 +73,7 @@ class PacienteController extends Controller
             'cep' => $request->input('cep'),
             'uf' => $request->input('uf'),
             'identidade' => $request->input('identidade'),
+            'hospital' => $request->input('hospital'),
             'cpf' => $request->input('cpf'),
             'telefone' => $request->input('telefone'),
             'complemento' => $request->input('complemento'),
@@ -133,6 +134,7 @@ class PacienteController extends Controller
             'cep' => $request->input('cep'),
             'uf' => $request->input('uf'),
             'identidade' => $request->input('identidade'),
+            'hospital' => $request->input('hospital'),
             'cpf' => $request->input('cpf'),
             'telefone' => $request->input('telefone'),
             'complemento' => $request->input('complemento')

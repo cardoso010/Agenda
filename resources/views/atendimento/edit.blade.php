@@ -67,16 +67,16 @@
 									<label for="setor">Hospital</label>
 									<select name="hospital" class="form-control" id="hospital" {{ (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0)) ? '' : 'disabled' }}>
 										<option value="UPA Rocinha" {{ $atendimento->hospital == 'UPA Rocinha' ? 'selected' : '' }}> UPA Rocinha</option>
-										<option value=">UPA Cidade de Deus" {{ $atendimento->hospital == 'UPA Cidade de Deus' ? 'selected' : '' }}>UPA Cidade de Deus</option>
+										<option value="UPA Cidade de Deus" {{ $atendimento->hospital == 'UPA Cidade de Deus' ? 'selected' : '' }}>UPA Cidade de Deus</option>
 										<option value="UPA Praca Seca" {{ $atendimento->hospital == 'UPA Praca Seca' ? 'selected' : '' }}>UPA Praca Seca</option>
 										<option value="UPA Praca Sec" {{ $atendimento->hospital == 'UPA Praca Sec' ? 'selected' : '' }}>UPA São Cristóvão</option>
-										<option value="Taquara" {{ $atendimento->hospital == 'Taquara' ? 'selected' : '' }}>Taquara</option>
+										<option value="UPA Taquara" {{ $atendimento->hospital == 'UPA Taquara' ? 'selected' : '' }}>UPA Taquara</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-3">
 								<div class="form-group">
-									<label for="setor_id">Ambulatório</label>
+									<label for="setor_id">Setores</label>
 									@if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0))
 										{!! Form::select('setor_id', $setores, $atendimento->setor_id, ['class' => 'form-control selectpicker']) !!}
 									@else

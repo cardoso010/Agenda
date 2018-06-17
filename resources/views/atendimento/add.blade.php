@@ -51,17 +51,17 @@
 									<label for="setor">Hospital</label>
 									<select name="hospital" class="form-control" id="hospital">
 										<option value="UPA Rocinha"> UPA Rocinha</option>
-										<option value=">UPA Cidade de Deus">UPA Cidade de Deus</option>
+										<option value="UPA Cidade de Deus">UPA Cidade de Deus</option>
 										<option value="UPA Praca Seca">UPA Praca Seca</option>
 										<option value="UPA Praca Sec">UPA São Cristóvão</option>
-										<option value="Taquara">Taquara</option>
+										<option value="UPA Taquara">UPA Taquara</option>
 									</select>
 								</div>
 							</div>
 
 							<div class="col-md-3">
 								<div class="form-group">
-									<label for="setor_id">Ambulatório</label>
+									<label for="setor_id">Setores</label>
 									<select name="setor_id" class="form-control selectpicker" data-live-search="true" title="Setor">
 										@foreach($setores as $setor)
 										<option value="{{ $setor->id }}">{{ $setor->nome }}</option>
