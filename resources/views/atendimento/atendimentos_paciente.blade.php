@@ -12,28 +12,42 @@
                     <table class="table table-hover table-striped">
                         <thead>
                             <th>ID</th>
-                            <th>Resumo</th>
-                            <th>Descricao</th>
+                            <th>Prioridade</th>
+                            <th>Data do atendimento</th>
+                            <th>Paciente</th>
                             <th>Status</th>
-                            <th>Data Solução</th>
-                            <th>Data Fechamento</th>
-                            <th>Ação</th>
+                            <th></th>
                         </thead>
                         <tbody>
-                            @foreach($atendimentos as $atendimento)
-                                <tr>
-                                    <th scope="row" class="text-center">{{ $atendimento->id }}</th>
-                                    <td>{{ $atendimento->resumo }}</td>
-                                    <td>{{ $atendimento->descricao }}</td>
-                                    <td>{{ $atendimento->status }}</td>
-                                    <td>{{ $atendimento->data_solucao }}</td>
-                                    <td>{{ $atendimento->data_fechamento }}</td>
-                                    <td>{{ $atendimento->acao }}</td>
-                                    <td width="155" class="text-center">
-                                        <a href="{{route('atendimento.edit', $atendimento->id)}}" class="btn btn-default">Ver</a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                        @foreach($atendimentos as $atendimento)
+                            <tr class="{{$atendimento->status == 1 ? 'atendimento-aberto' : 'atendimento-fechado'}}">
+                                <th scope="row" class="text-center">{{ $atendimento->id }}</th>
+                                <td> <span class='label-{{ $atendimento->prioridade }}'>{{ $atendimento->prioridade }}</span></td>
+                                <td>
+                                    <input type="text" disabled class="data_solucao{{ $atendimento->id }}" style="border: none;" value="{{ $atendimento->data_solucao }}">
+                                    <script>
+                                        $(document).ready(function(){
+                                            $(".data_solucao{{ $atendimento->id }}").val(formataData($(".data_solucao{{ $atendimento->id }}").val()))
+                                        });
+                                    </script>
+                                </td>
+                                <td>{{ isset($atendimento->paciente) ? $atendimento->paciente->nome : '' }}</td>
+                                <td> <span style="color : {{ $atendimento->status == 1 ? 'blue' : 'red' }}; font-weight: bolder;">{{ $atendimento->status == 1 ? 'Aberto' : 'Fechado' }}</span></td>
+                                <td width="155" class="text-center">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <a href="{{route('atendimento.edit', $atendimento->id)}}?paciente={{ $atendimento->paciente_id }}" class="btn btn-default">
+                                                @if (Auth::user()->hasRole('especialista'))
+                                                    Atender
+                                                @else
+                                                    Ver
+                                                @endif
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

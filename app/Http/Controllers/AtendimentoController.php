@@ -29,7 +29,6 @@ class AtendimentoController extends Controller
     public function index(Request $request)
     {
 
-
         $atendimentos = DB::table('atendimento')
         ->join('especialista', 'atendimento.especialista_id', '=', 'especialista.id')
         ->join('users', 'users.id', '=', 'especialista.user_id')
@@ -155,7 +154,7 @@ class AtendimentoController extends Controller
     }
 
     public function atendimentos_paciente($id){
-        $paciente =  Paciente::find($id);
+        $paciente = Paciente::find($id);
         $atendimentos = Atendimento::where('paciente_id', $id)->get();
         return view('atendimento.atendimentos_paciente', compact('paciente', 'atendimentos'));
 
