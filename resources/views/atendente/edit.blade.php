@@ -71,7 +71,7 @@
 								<label for="setor">Unidade</label>
 								<select name="hospital" class="form-control" id="hospital" value="{{ $atendente->hospital }}">
 									<option value="UPA Rocinha" {{ $atendente->hospital == 'UPA Rocinha' ? 'selected' : '' }} > UPA Rocinha</option>
-									<option value=">UPA Cidade de Deus" {{ $atendente->hospital == 'UPA Cidade de Deus' ? 'selected' : '' }} > UPA Cidade de Deus</option>
+									<option value="UPA Cidade de Deus" {{ $atendente->hospital == 'UPA Cidade de Deus' ? 'selected' : '' }} > UPA Cidade de Deus</option>
 									<option value="UPA Praca Seca" {{ $atendente->hospital == 'UPA Praca Seca' ? 'selected' : '' }}>  UPA Praca Seca</option>
 									<option value="UPA Praca Sec" {{ $atendente->hospital == 'UPA São Cristóvão' ? 'selected' : '' }} > UPA São Cristóvão</option>
 									<option value="Taquara" {{ $atendente->hospital == 'Taquara' ? 'selected' : '' }} > Taquara</option>
