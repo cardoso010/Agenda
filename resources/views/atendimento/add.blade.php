@@ -61,7 +61,7 @@
 
 							<div class="col-md-3">
 								<div class="form-group">
-									<label for="setor_id">Setores</label>
+									<label for="setor_id">Setor</label>
 									<select name="setor_id" class="form-control selectpicker" data-live-search="true" title="Setor">
 										@foreach($setores as $setor)
 										<option value="{{ $setor->id }}">{{ $setor->nome }}</option>

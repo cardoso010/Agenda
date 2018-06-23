@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
             	<ol class="breadcrumb panel-heading">
-                	<li><a href="{{route('especialista.index')}}">Editar Especialista</a></li>
+                	<li><a href="{{route('especialista.index')}}">Editar Médico</a></li>
                 	<li class="active">Editar</li>
                 </ol>
                 <div class="panel-body">

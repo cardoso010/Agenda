@@ -50,7 +50,7 @@
             <li>
                 <a href="{{ route('especialista.index') }}">
                     <i class="pe-7s-map-marker"></i>
-                    <p>Especialistas</p>
+                    <p>Médicos</p>
                 </a>
             </li>
             @endif

@@ -147,9 +147,16 @@ class AtendimentoController extends Controller
     public function update(Request $request, $id)
     {
         $atendimento = Atendimento::find($id);
+
         if(!empty($atendimento)){
             $atendimento->update($request->all());
+
+            $atendimento = Atendimento::find($id);
+            if(!$atendimento->status){
+                $atendimento->update(['data_solucao' => date('Y-m-d H:i:s')]);
+            }
         }
+        
         return redirect()->route('atendimento.index');
     }
 

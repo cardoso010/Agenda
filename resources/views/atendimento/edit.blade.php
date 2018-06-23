@@ -58,7 +58,7 @@
 						<div class="row">
 							<div class="col-md-3">
 								<div class="form-group">
-									<label for="data_solucao">Data do Atendimento</label>
+									<label for="data_solucao">{{ $atendimento->status == 1 ? 'Data do Atendimento' : 'Data do Encerramento'  }}</label>
 									<input type=" {{ $atendimento->data_solucao ? 'datetime-local' : 'text' }}" {{ $atendimento->data_solucao ? 'disabled' : '' }} class="form-control" name="data_solucao" id="data_solucao" value="{{ $atendimento->data_solucao }}">
 								</div>
 							</div>
@@ -76,7 +76,7 @@
 							</div>
 							<div class="col-md-3">
 								<div class="form-group">
-									<label for="setor_id">Setores</label>
+									<label for="setor_id">Setor</label>
 									@if (!Auth::user()->hasRole('paciente') || (Auth::user()->role == 0))
 										{!! Form::select('setor_id', $setores, $atendimento->setor_id, ['class' => 'form-control selectpicker']) !!}
 									@else

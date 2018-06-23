@@ -5,11 +5,11 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">ESPECIALISTAS</h4>
-                    <p class="category">LISTAGEM DE ESPECIALISTAS</p>
+                    <h4 class="title">Médicos</h4>
+                    <p class="category">LISTAGEM DE MÉDICOS</p>
                 </div>
                 <div class="form-group" style="float: right;">
-                    <p><a href="{{route('especialista.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Novo Especialista</a></p>
+                    <p><a href="{{route('especialista.create')}}" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-plus"></i> Novo Médico</a></p>
                 </div>
                 <div class="content table-responsive table-full-width">
                     <table class="table table-hover table-striped">
