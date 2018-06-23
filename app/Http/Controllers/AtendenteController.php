@@ -118,6 +118,7 @@ class AtendenteController extends Controller
             'perfil' => $request->input('perfil'),
             'cargo' => $request->input('cargo'),
             'matricula' => $request->input('matricula'),
+            'hospital' => $request->input('hospital'),
             'setor' => $request->input('setor'),
             'local' => $request->input('local')
         ];
