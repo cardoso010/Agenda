@@ -64,6 +64,7 @@ class EspecialistaController extends Controller
         $especialista = Especialista::create([
             'perfil' => $request->input('perfil'),
             'cargo_espec' => $request->input('cargo_espec'),
+            'hospital' => $request->input('hospital'),
             'crm_mat' => $request->input('crm_mat'),
             'user_id' => $usuario->id,
             'hospital' => $request->input('hospital'),
@@ -115,6 +116,7 @@ class EspecialistaController extends Controller
         $update =[
             'perfil' => $request->input('perfil'),
             'cargo_espec' => $request->input('cargo_espec'),
+            'hospital' => $request->input('hospital'),
             'crm_mat' => $request->input('crm_mat'),
             'hospital' => $request->input('hospital'),
         ];
