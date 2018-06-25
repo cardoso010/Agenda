@@ -99,8 +99,8 @@ class AtendimentoController extends Controller
     {
 
         $atendimento = Atendimento::create([
-            'resumo' => $request->input('resumo') ? $request->input('descricao') : " ",
-            'descricao' => $request->input('descricao'),
+            'resumo' => $request->input('resumo') ? $request->input('resumo') : " ",
+            'descricao' => $request->input('descricao') ? $request->input('descricao') : " ",
             'status' => $request->input('status'),
             'data_solucao' => date('Y-m-d H:i:s'),
             'data_fechamento' => '1999-01-01 00:00:00',
@@ -147,7 +147,7 @@ class AtendimentoController extends Controller
     public function update(Request $request, $id)
     {
         $atendimento = Atendimento::find($id);
-
+        
         if(!empty($atendimento)){
             $atendimento->update($request->all());
 

@@ -61,9 +61,9 @@
 							<label for="setor">Unidade</label>
 							<select name="hospital" class="form-control" id="hospital">
 								<option value="UPA Rocinha"> UPA Rocinha</option>
-								<option value=">UPA Cidade de Deus">UPA Cidade de Deus</option>
+								<option value="UPA Cidade de Deus">UPA Cidade de Deus</option>
 								<option value="UPA Praca Seca" >UPA Praca Seca</option>
-								<option value="UPA Praca Sec">UPA São Cristóvão</option>
+								<option value="UPA São Cristóvão">UPA São Cristóvão</option>
 								<option value="Taquara">Taquara</option>
 							</select>
 						</div>

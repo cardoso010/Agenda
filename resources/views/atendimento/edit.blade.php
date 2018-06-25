@@ -69,7 +69,7 @@
 										<option value="UPA Rocinha" {{ $atendimento->hospital == 'UPA Rocinha' ? 'selected' : '' }}> UPA Rocinha</option>
 										<option value="UPA Cidade de Deus" {{ $atendimento->hospital == 'UPA Cidade de Deus' ? 'selected' : '' }}>UPA Cidade de Deus</option>
 										<option value="UPA Praca Seca" {{ $atendimento->hospital == 'UPA Praca Seca' ? 'selected' : '' }}>UPA Praca Seca</option>
-										<option value="UPA Praca Sec" {{ $atendimento->hospital == 'UPA Praca Sec' ? 'selected' : '' }}>UPA São Cristóvão</option>
+										<option value="UPA São Cristóvão" {{ $atendimento->hospital == 'UPA São Cristóvão' ? 'selected' : '' }}>UPA São Cristóvão</option>
 										<option value="UPA Taquara" {{ $atendimento->hospital == 'UPA Taquara' ? 'selected' : '' }}>UPA Taquara</option>
 									</select>
 								</div>

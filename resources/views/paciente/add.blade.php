@@ -89,7 +89,7 @@
 										<option value="UPA Rocinha"> UPA Rocinha</option>
 										<option value="UPA Cidade de Deus">UPA Cidade de Deus</option>
 										<option value="UPA Praca Seca">UPA Praca Seca</option>
-										<option value="UPA Praca Sec">UPA São Cristóvão</option>
+										<option value="UPA São Cristóvão">UPA São Cristóvão</option>
 										<option value="UPA Taquara">UPA Taquara</option>
 									</select>
 								</div>
